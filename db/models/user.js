@@ -4,14 +4,22 @@ const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const User = db.define('users', {
-  name: Sequelize.STRING,  
+const User = db.define('user', {
+
+  firstname: Sequelize.STRING,  
+  lastname: Sequelize.STRING,
+  address: {
+    type: Sequelize.STRING
+  },
   email: {
     type: Sequelize.STRING,
     validate: {
 			isEmail: true,
 			notEmpty: true,
 		}
+  },
+  admin: {
+    type: Sequelize.BOOLEAN
   },
 
   // We support oauth, so users may or may not have passwords.
@@ -47,4 +55,4 @@ function setEmailAndPassword(user) {
   )
 }
 
-module.exports = User
+module.exports = User;
