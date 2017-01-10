@@ -1,6 +1,8 @@
 'use strict';
 
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
 
 module.exports = {
   entry: './app/main.jsx',
@@ -13,6 +15,9 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+  plugins: [
+      new ExtractTextPlugin('style.css')
+  ],
   module: {
     loaders: [
       {
@@ -22,6 +27,10 @@ module.exports = {
         query: {
           presets: ['react', 'es2015', 'stage-2']
         }
+      },
+      {
+        test   : /\.scss$/,
+        loaders: [ 'style', 'css', 'sass' ],
       }
     ]
   }
