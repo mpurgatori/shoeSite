@@ -11,7 +11,6 @@ import LoginForm from './components/LoginForm'
 
 import AllShoesContainer from './containers/AllShoesContainer'
 import Cart from './components/Cart'
-import WhoAmI from './components/WhoAmI'
 
 
 

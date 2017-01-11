@@ -10,7 +10,6 @@ const exampleShoes = {
 export default function (props) {
 
   const allShoes = props.allShoes;
-  console.log(allShoes);
   return (
     <div>
       <h3 className="col-xs-10 col-xs-offset-1">AllShoes</h3>

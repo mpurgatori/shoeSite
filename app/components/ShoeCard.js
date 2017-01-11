@@ -3,14 +3,13 @@ import {Link} from 'react-router';
 
 export default function (props) {
 
-  console.log(props);
   const shoeModel = props.shoeModel;
+  const shoe = shoeModel.shoe_inventories[0]
   return (
     <div>
       <h3 className="col-xs-10 col-xs-offset-1"></h3>
       <div className="row">
-        {
-          shoeModel && shoeModel.shoe_inventories.map(shoe => (
+
             <div className="col-xs-10 col-xs-offset-1" key={ shoe.id }>
               <Link className="thumbnail" to={`allshoes/${shoeModel.id}/${shoe.id}`}>
                 <div className="caption">
@@ -24,8 +23,7 @@ export default function (props) {
                 </div>
               </Link>
             </div>
-          ))
-        }
+
       </div>
     </div>
   );
