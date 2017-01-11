@@ -9,15 +9,14 @@ const mapStateToProps = function (state, ownProps) {
 
 const mapDispatchToProps = function (dispatch, ownProps) {
   return  {
-    filterShoes: function (filterInfo) {
+    filterShoes: function (filterInfo, e) {
+      e.preventDefault();
       let filterCriteria = {
         color: filterInfo.color,
         size: filterInfo.size,
         price: filterInfo.price,
       }
       dispatch(filterAllShoes(filterCriteria))
-      console.log('hitting the filter');
-      return
     }
   }
 }

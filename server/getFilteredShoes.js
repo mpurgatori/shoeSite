@@ -1,32 +1,46 @@
 const express = require('express');
 const router = express.Router();
 const { ShoeInventory, ShoeModel } = require('APP/db/models/index');
-
+const util = require('util')
 router.post('/', function(req, res, next) {
-  console.log('hitting', req.body);
+  const criteria = req.body.criteria
+  console.log('hitting', criteria);
+  console.log('this is checking if SIZE is an Array', Array.isArray(criteria.size));
 
-  ShoeModel.findAll({
-    where: {
-      price: {
-        $contains: req.body.price
+  const conditions = [];
+  if(criteria.color.length) {
+    conditions.push({
+      color: {
+        $like: {
+          $any: criteria.color,
+        },
       }
-    },
+    });
+  }
+
+  if(criteria.size.length) {
+      conditions.push({
+        size: {
+          $in: criteria.size,
+        },
+      });
+  }
+
+  const whatWeGiveSequelize = {
     include: [{
       model: ShoeInventory,
       where: {
-        color: {
-          $contains: req.body.color,
-        },
-        size: {
-          $contains: req.body.size,
-        }
+        $and: conditions
       }
     }]
-  })
+  };
+  console.log(util.inspect(whatWeGiveSequelize, {showHidden: false, depth: 8}))
+
+
+  ShoeModel.findAll(whatWeGiveSequelize)
   .then(shoes => {
-    console.log(shoes);
     res.json(shoes)
-  }).catch(next)
+  }).catch(err => console.error('this is my ERROR!', err))
 })
 
 module.exports = router;

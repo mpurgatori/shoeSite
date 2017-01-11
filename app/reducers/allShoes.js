@@ -20,8 +20,9 @@ export const loadAllShoes = (filteredShoes) => {
 
 export const filterAllShoes = (criteria) => {
   return dispatch => {
-    axios.post('api/shoes', {criteria} )
+    axios.post('api/getfilteredshoes', {criteria} )
     .then(res => {
+      console.log(res.data);
       dispatch(receiveShoes(res.data))
     })
   }
