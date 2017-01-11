@@ -7,28 +7,13 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import AppContainer from './containers/AppContainer'
-
-
-import Jokes from './components/Jokes'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-) (
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
+import AllShoesContainer from './containers/AllShoesContainer'
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
+      <Route path='/allshoes' component={AllShoesContainer} />
         {/* <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} /> */}
       </Route>
