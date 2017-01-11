@@ -12,7 +12,7 @@ const Navbar = (props) => {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand navbar-brand-red" href="/">Shoe Site</a>
+          <a className="navbar-brand navbar-brand-red" href="/"><span style={{color: 'white', textDecoration: 'none'}}>Shoe Site</span></a>
         </div>
         <div id="nav-items" className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
