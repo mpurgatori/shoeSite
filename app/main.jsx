@@ -8,16 +8,23 @@ import {connect, Provider} from 'react-redux'
 import store from './store'
 import AppContainer from './containers/AppContainer'
 import LoginForm from './components/LoginForm'
+
 import AllShoesContainer from './containers/AllShoesContainer'
+import Cart from './components/Cart'
+import WhoAmI from './components/WhoAmI'
+
 
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
+
     <Route path="/" component={AppContainer}>
       <Route path='/allshoes' component={AllShoesContainer} />
       <Route path="/login" component={LoginForm}/>
+      <Route path="/cart" component={Cart}/ >
     </Route>
+
     </Router>
   </Provider>,
   document.getElementById('main')
