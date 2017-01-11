@@ -11,6 +11,7 @@ import AppContainer from './containers/AppContainer'
 
 import Jokes from './components/Jokes'
 import Login from './components/Login'
+import LoginForm from './components/LoginForm'
 import WhoAmI from './components/WhoAmI'
 
 const ExampleApp = connect(
@@ -28,10 +29,8 @@ const ExampleApp = connect(
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={AppContainer}>
-        {/* <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} /> */}
-      </Route>
+      <Route path="/login" component={LoginForm}/>
+      <Route path="/" component={AppContainer}/>
     </Router>
   </Provider>,
   document.getElementById('main')
