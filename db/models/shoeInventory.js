@@ -1,13 +1,13 @@
 'use strict'
 
 const Sequelize = require('sequelize')
-const db = require('APP/db')
+const db = require('../index')
 
 const ShoeInventory = db.define('shoe_inventory', {
     size: {
       type: Sequelize.FLOAT,
       allowNull: false
-      }, 
+      },
     color: {
       type: Sequelize.STRING,
       allowNull: false
@@ -19,7 +19,7 @@ const ShoeInventory = db.define('shoe_inventory', {
     price: {
       type: Sequelize.FLOAT,
       allowNull: false
-    }	
+    }
 
 }, {});
 

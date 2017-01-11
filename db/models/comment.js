@@ -10,15 +10,15 @@ const Comment = db.define('comment', {
         min: 1,
         max: 5,
       },
-    }, 
+    },
     body: {
       type: Sequelize.TEXT
     },
     upvotes: {
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.INTEGER,
     },
     downvotes: {
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.INTEGER,
     },
 
 }, {});
