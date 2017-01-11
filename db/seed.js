@@ -1,31 +1,13 @@
-const db = require('APP/db')
-
-const seedUsers = () => db.Promise.map([
-  {name: 'so many', email: 'god@example.com', password: '1234'},
-  {name: 'Barack Obama', email: 'barack@example.gov', password: '1234'},
-], user => db.model('users').create(user))
-
-db.didSync
-  .then(() => db.sync({force: true}))
-  .then(seedUsers)
-  .then(users => console.log(`Seeded ${users.length} users OK`))
-  .catch(error => console.error(error))
-  .finally(() => db.close())
-
-
-
-  // This file should contain all the record creation needed to seed the database with its default values.
-  // The data can then be loaded with the node seed.js
-
   let Promise = require('bluebird');
-  const db = require('APP/db')
 
 
-  let user = require('APP/db/models/user');
-  let order = require('APP/db/models/order');
-  let comment = require('APP/db/models/comment');
-  let shoeInventory = require('APP/db/models/ShoeInventory');
-  let shoeModel = require('APP/db/models/ShoeModel');
+  const db = require('./index');
+
+  let User = require('./models/index').User;
+  let Order = require('./models/index').Order;
+  let Comment = require('./models/index').Comment;
+  let ShoeInventory = require('./models/index').ShoeInventory;
+  let ShoeModel = require('./models/index').ShoeModel;
 
 
 
@@ -60,353 +42,377 @@ db.didSync
       comment: [{
           product_rating: 4,
           body: "Amazing shoe",
-          upvotes:
-          downvotes:
+          upvotes: 32,
+          downvotes: 5
       }, {
-          content: "Adverbs"
-      }, {
-          content: "Nouns"
-      }],
-      course: [{
-          name: "ENG 201"
-      }, {
-          name: "MATH 300"
-      }, {
-          name: "CIS 452"
-      }],
-
-      prompt: [{
-          content: "Describe a paragraph using a verb."
-      }, {
-          content: "Incorporate proper nouns into a sentence."
-      }, {
-          content: "Use an adverb."
+          product_rating: 1,
+          body: "Pretty much the worst shoe ever!",
+          upvotes: 11,
+          downvotes: 8
       },{
-          content: "Do something funny....now!."
+          product_rating: 3,
+          body: "Meh...It's a shoe",
+          upvotes: 3,
+          downvotes: 100
+      },{
+          product_rating: 5,
+          body: "It's like walking on a football field of jello shots and wookies",
+          upvotes: 400,
+          downvotes: 1
       }],
 
-      teacher: [{
-          first: "Janice",
-          last: "Elliot",
-          email: "jelliot@email.com",
-          password: "one"
+      order: [{
+        date: 2017-01-03,
+        tracking: "1779298016",
+        address: "123 N. Clark St, Chicago, IL 60622",
+        payment: "Credit Card",
+        status: "shipped"
+      },{
+        date: 2017-01-11,
+        tracking: "90083HKWGO09",
+        address: "434 W. State St, Chicago, IL 60645",
+        payment: "Credit Card",
+        status: "pending"
+      },{
+        date: 2016-22-12,
+        tracking: "33344532112",
+        address: "5632 W. Division St, Chicago, IL 60813",
+        payment: "Credit Card",
+        status: "shipped"
+      },{
+        date: 2016-02-10,
+        tracking: "773669973-9820",
+        address: "6164 W. Addison St, Chicago, IL 60669",
+        payment: "Credit Card",
+        status: "pending"
+      }],
+
+      shoe_model: [{
+          brand: "Nike",
+          name: "Air Bud II's",
+          style: "Athletic",
+          image_url: "http://thethings3.imgix.net/wp-content/uploads/2016/04/26complex.jpg?auto=format&lossless=1&q=90&w=612&h=612&fit=crop",
+          description: "This sneak will give rover the boost and pep to take down them bastards accross town for the city title.",
+          country_of_origin: "USA",
+          rating: 5,
+          gender: 'M'
       }, {
-          first: "Mark",
-          last: "Goodteach",
-          email: "mark@email.com",
-          password: "two"
+          brand: "Uggz",
+          name: "The Basic",
+          style: "Casual",
+          image_url: "http://demandware.edgesuite.net/sits_pod37/dw/image/v2/ABCR_PRD/on/demandware.static/-/Sites-masterCatalogUgg/default/dw39382d47/images/amazon/large/1016224-CHE_2.jpg?sw=375&sh=418&sm=fit",
+          description: "Perfect for a fall afternoon. Just you and your vanilla chai coffee thing.",
+          country_of_origin: "Australia",
+          rating: 2,
+          gender: 'F'
       }, {
-          first: "Claudia",
-          last: "Whitesox",
-          email: "claud@email.com",
-          password: "three"
+          brand: "Timberlands",
+          name: "The Trekker",
+          style: "Boot",
+          image_url: "http://cdn.planetshoes.com/images/7100/7100_184_zoom.jpg",
+          description: "Go ahead, scale Kilimanjaro in em. We dare you.",
+          country_of_origin: "Canada",
+          rating: 4,
+          gender: 'M'
+      },{
+          brand: "Brunswick",
+          name: "The Lebowskis",
+          style: "Athletic",
+          image_url: "https://img1.etsystatic.com/000/0/5120282/il_570xN.266946931.jpg",
+          description: "You gotta use so many cuss words?",
+          country_of_origin: "USA",
+          rating: 1,
+          gender: 'M'
+      }],
+
+      shoe_inventory: [{
+        size: 12,
+        color: "White",
+        quantity: 23,
+        price: 59.99
+      },{
+        size: 11,
+        color: "White",
+        quantity: 3,
+        price: 59.99
+      },{
+        size: 10,
+        color: "White",
+        quantity: 11,
+        price: 59.99
+      },{
+        size: 12,
+        color: "Red",
+        quantity: 40,
+        price: 59.99
+      },{
+        size: 8,
+        color: "Brown",
+        quantity: 12,
+        price: 99.99
+      },{
+        size: 7,
+        color: "Brown",
+        quantity: 90,
+        price: 99.99
+      },{
+        size: 7.5,
+        color: "Brown",
+        quantity: 2,
+        price: 99.99
+      },{
+        size: 8,
+        color: "Black",
+        quantity: 20,
+        price: 99.99
+      },{
+        size: 9.5,
+        color: "Grey",
+        quantity: 11,
+        price: 89.99
+      },{
+        size: 10,
+        color: "Green",
+        quantity: 111,
+        price: 89.99
+      },{
+        size: 10.5,
+        color: "Green",
+        quantity: 2,
+        price: 89.99
+      },{
+        size: 11.5,
+        color: "Black",
+        quantity: 20,
+        price: 89.99
+      },{
+        size: 13,
+        color: "Blue",
+        quantity: 12,
+        price: 39.99
+      },{
+        size: 8,
+        color: "Blue",
+        quantity: 90,
+        price: 39.99
+      },{
+        size: 12,
+        color: "Brown",
+        quantity: 2,
+        price: 39.99
+      },{
+        size: 11,
+        color: "Black",
+        quantity: 20,
+        price: 39.99
       }]
   };
 
-
-
-  db.sync({
-          force: true
-      })
-      .then(function() {
-          console.log("Currently seeding file -> seed.js");
-          return Promise.map(Object.keys(data), function(name) {
-              return Promise.map(data[name], function(item) {
-                  return db.model(name)
-                      .create(item);
-              });
+  const oldFunction = function() {
+      console.log("Currently seeding file -> seed.js");
+      return Promise.map(Object.keys(data), function(name) {
+          return Promise.map(data[name], function(item) {
+              return db.model(name)
+                  .create(item);
           });
-      })
-      //fill out student course join
-      .then(function() {
-          return Promise.all([
-              Student.findOne({
-                  where: {
-                      id: 1
-                  }
-              }),
-              Course.findOne({
-                  where: {
-                      id: 1
-                  }
-              })
-          ]);
-      })
-      .spread(function(student, course) {
-          return course.addStudent(student);
-      })
-      .then(function() {
-          return Promise.all([
-              Student.findOne({
-                  where: {
-                      id: 1
-                  }
-              }),
-              Course.findOne({
-                  where: {
-                      id: 2
-                  }
-              })
-          ]);
-      })
-      .spread(function(student, course) {
-          return course.addStudent(student);
-      })
-      .then(function() {
-          return Promise.all([
-              Student.findOne({
-                  where: {
-                      id: 2
-                  }
-              }),
-              Course.findOne({
-                  where: {
-                      id: 2
-                  }
-              })
-          ]);
-      })
-      .spread(function(student, course) {
-          return course.addStudent(student);
-      })
-      .then(function() {
-          return Promise.all([
-              Student.findOne({
-                  where: {
-                      id: 2
-                  }
-              }),
-              Course.findOne({
-                  where: {
-                      id: 3
-                  }
-              })
-          ]);
-      })
-      .spread(function(student, course) {
-          return course.addStudent(student);
-      })
-      .then(function() {
-          return Promise.all([
-              Student.findOne({
-                  where: {
-                      id: 3
-                  }
-              }),
-              Course.findOne({
-                  where: {
-                      id: 1
-                  }
-              })
-          ]);
-      })
-      .spread(function(student, course) {
-          return course.addStudent(student);
-      })
-      .then(function() {
-          return Promise.all([
-              Student.findOne({
-                  where: {
-                      id: 3
-                  }
-              }),
-              Course.findOne({
-                  where: {
-                      id: 3
-                  }
-              })
-          ]);
-      })
-      .spread(function(student, course) {
-          return course.addStudent(student);
-      })
-      //fill out reply prompts
-      // .then(function() {
-      //     return Reply.findAll()
-      // })
-      // .then(function(replyMap) {
-      //     return Prompt.findAll()
-      //         .then(function(promptMap) {
-      //             return Promise.all([
-      //                 replyMap[0].setPrompt(promptMap[0]),
-      //                 replyMap[1].setPrompt(promptMap[0]),
-      //                 replyMap[2].setPrompt(promptMap[1]),
-      //                 replyMap[3].setPrompt(promptMap[1]),
-      //                 replyMap[4].setPrompt(promptMap[2]),
-      //                 replyMap[5].setPrompt(promptMap[2]),
-      //                 replyMap[6].setPrompt(promptMap[2]),
-      //             ])
-      //         })
-      // })
-      //fill out student prompts
-      // .then(function() {
-      //     return Reply.findAll()
-      // })
-      // .then(function(replyMap) {
-      //     return Student.findAll()
-      //         .then(function(studentMap) {
-      //             return Promise.all([
-      //                 replyMap[0].setStudent(studentMap[0]),
-      //                 replyMap[1].setStudent(studentMap[0]),
-      //                 replyMap[2].setStudent(studentMap[0]),
-      //                 replyMap[3].setStudent(studentMap[1]),
-      //                 replyMap[4].setStudent(studentMap[2]),
-      //                 replyMap[5].setStudent(studentMap[1]),
-      //                 replyMap[6].setStudent(studentMap[2]),
-      //             ])
-      //         })
-      // })
-      //Fils out Prompt Categories
-      .then(function() {
-          return Prompt.findAll()
-      })
-      .then(function(promptMap) {
-          return Category.findAll()
-              .then(function(catMap) {
-                  return Promise.all([
-                      promptMap[0].setCategory(catMap[0]),
-                      promptMap[1].setCategory(catMap[1]),
-                      promptMap[2].setCategory(catMap[2]),
-                      promptMap[3].setCategory(catMap[0])
+      });
+  }
 
+  db.didSync
+      .then(() => db.sync({force: true}))
+      .then(oldFunction)
+
+      .then(function() {
+          return Order.findAll()
+      })
+      .then(function(orderMap) {
+          return User.findAll()
+              .then(function(userMap) {
+                  return Promise.all([
+                      orderMap[0].setUser(userMap[0]),
+                      orderMap[1].setUser(userMap[1]),
+                      orderMap[2].setUser(userMap[1]),
+                      orderMap[3].setUser(userMap[2])
                   ])
               })
       })
-      //Fills out prompt courses
-      // .then(function() {
-      //     return Prompt.findAll()
-      // })
-      // .then(function(promptMap) {
-      //     return Course.findAll()
-      //         .then(function(courseMap) {
-      //             return Promise.all([
-      //                 promptMap[0].setCourse(courseMap[0]),
-      //                 promptMap[1].setCourse(courseMap[1]),
-      //                 promptMap[2].setCourse(courseMap[2]),
-      //                 promptMap[3].setCourse(courseMap[2])
-      //             ])
-      //         })
-      // })
-      //
+
+      .then(function() {
+
+          return ShoeInventory.findAll()
+      })
+      .then(function(invMap) {
+
+          return ShoeModel.findAll()
+              .then(function(shoeMap) {
+                  return Promise.all([
+                      invMap[0].setShoe_model(shoeMap[0]),
+                      invMap[1].setShoe_model(shoeMap[1]),
+                      invMap[2].setShoe_model(shoeMap[2]),
+                      invMap[3].setShoe_model(shoeMap[3]),
+                      invMap[4].setShoe_model(shoeMap[0]),
+                      invMap[5].setShoe_model(shoeMap[1]),
+                      invMap[6].setShoe_model(shoeMap[2]),
+                      invMap[7].setShoe_model(shoeMap[3]),
+                      invMap[8].setShoe_model(shoeMap[0]),
+                      invMap[9].setShoe_model(shoeMap[1]),
+                      invMap[10].setShoe_model(shoeMap[2]),
+                      invMap[11].setShoe_model(shoeMap[3]),
+                      invMap[12].setShoe_model(shoeMap[0]),
+                      invMap[13].setShoe_model(shoeMap[1]),
+                      invMap[14].setShoe_model(shoeMap[2]),
+                      invMap[15].setShoe_model(shoeMap[3]),
+                  ])
+              })
+      })
+
+      .then(function() {
+
+          return Comment.findAll()
+      })
+      .then(function(commentMap) {
+          return ShoeModel.findAll()
+              .then(function(shoeMap) {
+                  return Promise.all([
+                      commentMap[0].setShoe_model(shoeMap[0]),
+                      commentMap[1].setShoe_model(shoeMap[1]),
+                      commentMap[2].setShoe_model(shoeMap[2]),
+                      commentMap[3].setShoe_model(shoeMap[3])
+                  ])
+              })
+      })
+      .then(function() {
+          return Comment.findAll()
+      })
+      .then(function(commentMap) {
+          return User.findAll()
+              .then(function(userMap) {
+                  return Promise.all([
+                      commentMap[0].setUser(userMap[0]),
+                      commentMap[1].setUser(userMap[1]),
+                      commentMap[2].setUser(userMap[2]),
+                      commentMap[3].setUser(userMap[3])
+                  ])
+              })
+      })
       .then(function() {
           return Promise.all([
-              Course.findOne({
+              Order.findOne({
                   where: {
                       id: 1
                   }
               }),
-              Prompt.findOne({
-                  where: {
-                      id: 1
-                  }
-              })
-          ]);
-      })
-      .spread(function(course, prompt) {
-          return course.addPrompt(prompt);
-      })
-      .then(function() {
-          return Promise.all([
-              Course.findOne({
-                  where: {
-                      id: 2
-                  }
-              }),
-              Prompt.findOne({
-                  where: {
-                      id: 2
-                  }
-              })
-          ]);
-      })
-      .spread(function(course, prompt) {
-          return course.addPrompt(prompt);
-      })
-      .then(function() {
-          return Promise.all([
-              Course.findOne({
-                  where: {
-                      id: 3
-                  }
-              }),
-              Prompt.findOne({
-                  where: {
-                      id: 3
-                  }
-              })
-          ]);
-      })
-      .spread(function(course, prompt) {
-          return course.addPrompt(prompt);
-      })
-      .then(function() {
-          return Promise.all([
-              Course.findOne({
-                  where: {
-                      id: 3
-                  }
-              }),
-              Prompt.findOne({
+              ShoeInventory.findOne({
                   where: {
                       id: 4
                   }
               })
           ]);
       })
-      .spread(function(course, prompt) {
-          return course.addPrompt(prompt);
+      .spread(function(order, shoe_inventory) {
+          return shoe_inventory.addOrder(order);
       })
-      //Teachers to course
       .then(function() {
           return Promise.all([
-              Teacher.findOne({
+              Order.findOne({
                   where: {
                       id: 1
                   }
               }),
-              Course.findOne({
+              ShoeInventory.findOne({
+                  where: {
+                      id: 8
+                  }
+              })
+          ]);
+      })
+      .spread(function(order, shoe_inventory) {
+          return shoe_inventory.addOrder(order);
+      })
+      .then(function() {
+          return Promise.all([
+              Order.findOne({
+                  where: {
+                      id: 2
+                  }
+              }),
+              ShoeInventory.findOne({
                   where: {
                       id: 1
                   }
               })
           ]);
       })
-      .spread(function(teacher, course) {
-          return teacher.addCourse(course);
+      .spread(function(order, shoe_inventory) {
+          return shoe_inventory.addOrder(order);
       })
       .then(function() {
           return Promise.all([
-              Teacher.findOne({
+              Order.findOne({
                   where: {
                       id: 2
                   }
               }),
-              Course.findOne({
+              ShoeInventory.findOne({
+                  where: {
+                      id: 16
+                  }
+              })
+          ]);
+      })
+      .spread(function(order, shoe_inventory) {
+          return shoe_inventory.addOrder(order);
+      })
+      .then(function() {
+          return Promise.all([
+              Order.findOne({
+                  where: {
+                      id: 3
+                  }
+              }),
+              ShoeInventory.findOne({
                   where: {
                       id: 2
                   }
               })
           ]);
       })
-      .spread(function(teacher, course) {
-          return teacher.addCourse(course);
+      .spread(function(order, shoe_inventory) {
+          return shoe_inventory.addOrder(order);
       })
       .then(function() {
           return Promise.all([
-              Teacher.findOne({
+              Order.findOne({
                   where: {
-                      id: 3
+                      id: 4
                   }
               }),
-              Course.findOne({
+              ShoeInventory.findOne({
                   where: {
-                      id: 3
+                      id: 16
                   }
               })
           ]);
       })
-      .spread(function(teacher, course) {
-          return teacher.addCourse(course);
+      .spread(function(order, shoe_inventory) {
+          return shoe_inventory.addOrder(order);
+      })
+      .then(function() {
+          return Promise.all([
+              Order.findOne({
+                  where: {
+                      id: 4
+                  }
+              }),
+              ShoeInventory.findOne({
+                  where: {
+                      id: 12
+                  }
+              })
+          ]);
+      })
+      .spread(function(order, shoe_inventory) {
+          return shoe_inventory.addOrder(order);
       })
       .catch(function(err) {
           console.error('There was totally a problem', err, err.stack);

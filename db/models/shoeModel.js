@@ -1,19 +1,19 @@
 'use strict'
 
 const Sequelize = require('sequelize')
-const db = require('APP/db')
+const db = require('../index')
 
 const ShoeModel = db.define('shoe_model', {
     brand: {
       type: Sequelize.STRING,
       allowNull: false
-      }, 
+      },
     name: {
       type: Sequelize.STRING,
       allowNull: false
     },
     style: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false
     },
     image_url: {
