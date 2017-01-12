@@ -12,7 +12,7 @@ import LoginForm from './components/LoginForm'
 import AllShoesContainer from './containers/AllShoesContainer'
 import Cart from './components/Cart'
 
-
+import {fetchPendingOrder} from './react/orders'
 
 render (
   <Provider store={store}>
@@ -21,7 +21,7 @@ render (
     <Route path="/" component={AppContainer}>
       <Route path='/allshoes' component={AllShoesContainer} />
       <Route path="/login" component={LoginForm}/>
-      <Route path="/cart" component={Cart}/ >
+      <Route path="/cart" component={Cart} onEnter={fetchPendingOrder}/ >
     </Route>
 
     </Router>
