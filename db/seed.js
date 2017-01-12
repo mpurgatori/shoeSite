@@ -219,7 +219,7 @@
   }
 
   db.didSync
-      .then(() => db.sync({force: true}))
+      //.then(() => db.sync({force: true}))
       .then(oldFunction)
 
       .then(function() {
