@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Sidebar from '../components/Sidebar';
-import {filterAllShoes} from '../reducers/allShoes'
+import {filterAllShoes} from '../redux/allShoes'
 
 const mapStateToProps = function (state, ownProps) {
   return {};

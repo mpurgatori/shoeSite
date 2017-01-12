@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const User = db.model('user')
 
-const {mustBeLoggedIn, selfOnly,} = require('./auth.filters')
+const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
 

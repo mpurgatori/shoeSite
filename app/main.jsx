@@ -5,7 +5,7 @@ import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
-import store from './store'
+import store from './redux/store'
 import AppContainer from './containers/AppContainer'
 import LoginForm from './components/LoginForm'
 
