@@ -24,9 +24,9 @@ const createUser  = user => ({ type: ADD_USER, user });
 /* ------------------    REDUCER    --------------------- */
 
 var defaultState = {
-	allUsers:[]
+	allUsers:[],
 	currentUser:{
-		email: ''
+		email: '',
 		firstName: '',
 		lastName: '',
 		address: '',
