@@ -3,10 +3,6 @@ import {Link} from 'react-router';
 import AllShoesContainer from '../containers/AllShoesContainer';
 import ShoeCard from './ShoeCard'
 
-const exampleShoes = {
-  shoes: [{brand: '', name: ''}]
-}
-
 export default function (props) {
 
   const allShoes = props.allShoes;
