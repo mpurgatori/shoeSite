@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import store from './store';
 
 /* --------------    ACTION CONSTANTS    ---------------- */
 
@@ -16,18 +17,15 @@ const getPendingOrder = order => ({ type: GET_USER_CURRENT_ORDER, order });
 
 var defaultState = {
 	orders: [],
-	pending: null
+	pending: {}
 }
 
 export default function (prev = defaultState, action){
 	switch (action.type){
 		case GET_USER_ORDERS:
 			return Object.assign({}, prev, {orders: action.orders})
-
-
 		case GET_USER_CURRENT_ORDER:
 			return Object.assign({}, prev, {pending: action.order})
-
 		default: return prev
 	}
 }
@@ -42,6 +40,7 @@ export const fetchUserOrders = user => dispatch => {
 
 
 export const fetchPendingOrder = user => dispatch => {
+	console.log("DISPATCH: ", dispatch);
   axios.get(`/api/orders/pending/${user.id}`)
   .then(res => dispatch(getPendingOrder(res.data)))
   .catch(err => console.error('Problem fetching user\'s orders', err));

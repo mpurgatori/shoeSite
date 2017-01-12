@@ -9,15 +9,6 @@ export const receiveShoes = (filteredShoes) => {
   }
 }
 
-export const loadAllShoes = (filteredShoes) => {
-  return dispatch => {
-    axios.get('/api/shoes')
-      .then(res => {
-        dispatch(receiveShoes(res.data))
-      })
-  }
-}
-
 export const filterAllShoes = (criteria) => {
   return dispatch => {
     axios.post('api/getfilteredshoes', {criteria} )

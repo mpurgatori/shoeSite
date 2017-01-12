@@ -26,6 +26,14 @@ router.post('/', function(req, res, next) {
       });
   }
 
+  if(criteria.price) {
+      conditions.push({
+        price: {
+          $lt: criteria.price,
+        },
+      });
+  }
+
   const whatWeGiveSequelize = {
     include: [{
       model: ShoeInventory,
