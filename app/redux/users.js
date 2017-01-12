@@ -68,9 +68,9 @@ export const updateName = (userId, firstName, lastName) => dispatch =>
    .catch(err => console.error(`Updating name unsuccessful`, err))
 
 export const removeUser = id => dispatch => 
-	dispatch(deleteUser(id));
 	axios.delete(`/api/users/${id}`)
-    .catch(err => console.error(`Removing user: ${id} unsuccesful`, err));
+		.then(() => dispatch(deleteUser(id)))
+    	.catch(err => console.error(`Removing user: ${id} unsuccesful`, err));
 
 export const fetchAllUsers = () => dispatch => 
     axios.get('/api/users')
