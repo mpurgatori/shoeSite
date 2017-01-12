@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import ShoeCardOrder from './ShoeCardOrder';
+import ShoeOrderCard from './ShoeOrderCard';
+
+		const exampleShoe = {
+			brand: "Nike",
+			name: "Air",
+			style: "Athletic",
+			image_url: "http://thethings3.imgix.net/wp-content/uploads/2016/04/26complex.jpg?auto=format&lossless=1&q=90&w=612&h=612&fit=crop",
+			description: "nice",
+			country_of_origin: "Panama",
+			rating: 5,
+			gender: "M",
+			size: 11,
+			color: "Red",
+			price: 49.99,
+			modelId: 2,
+			id: 1
+		};
 
 export default class Cart extends Component {
 
@@ -8,26 +24,16 @@ export default class Cart extends Component {
 		super(props);
 		this.state = {
 			order: {
-		        date: "2017-01-03",
-		        tracking: "1779298016",
-		        address: "123 N. Clark St, Chicago, IL 60622",
-		        payment: "Credit Card",
-		        status: "pending",
-		        shoeInventoryIds: ["A small red boot", "a big blue boot", "high heels"]
-		      }
-		}
-	}
-
-	componentDidMount() {
-		// get any order matching the user's ID with the status 'pending'
-		// and set it to this.state.order
+				shoes: [exampleShoe, exampleShoe, exampleShoe, exampleShoe, exampleShoe]
+			},
+		};
 	}
 
 	render() {
-		return (
-			<div>
-			{this.state.order.shoeInventoryIds.map(shoe => <div><text> {shoe} </text></div>)}
-			</div>
-		)
-	}
+		return <ShoeOrderCard props={exampleShoe} />
+
+		}
+		
 }
+
+
