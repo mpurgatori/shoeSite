@@ -56,30 +56,28 @@ export default function (prev = defaultState, action){
 
 /* --------------    THUNKS/DISPATCHERS    -------------- */
 
-export const updateAddress = (userId, address) => dispatch => 
+export const updateAddress = (userId, address) => dispatch =>
     axios.put(`/api/users/${userId}`, {address})
        .then(res => dispatch(setAddress(res.data.address)));
 
-export const updateName = (userId, firstName, lastName) => dispatch => 
+export const updateName = (userId, firstName, lastName) => dispatch =>
     axios.put(`/api/users/${userId}`, {firstName, lastName})
    .then(res => dispatch(updateFullName(
        	{firstName: res.data.firstName,
        	 lastName: res.data.lastName })))
    .catch(err => console.error(`Updating name unsuccessful`, err))
 
-export const removeUser = id => dispatch => 
+export const removeUser = id => dispatch =>
 	axios.delete(`/api/users/${id}`)
-		.then(() => dispatch(deleteUser(id)))
-    	.catch(err => console.error(`Removing user: ${id} unsuccesful`, err));
+		.then( () => dispatch(deleteUser(id)))
+    .catch(err => console.error(`Removing user: ${id} unsuccesful`, err));
 
-export const fetchAllUsers = () => dispatch => 
+export const fetchAllUsers = () => dispatch =>
     axios.get('/api/users')
    .then(res => dispatch(getAllUsers(res.data)))
    .catch(err => console.error(`Retrieving user list unsuccesful`, err));
 
-export const fetchUserData = (id, user) => dispatch => 
+export const fetchUserData = (id, user) => dispatch =>
   	axios.get(`/api/users/${id}`, user)
    .then(res => dispatch(getUserData(res.data)))
    .catch(err => console.error(`Retrieving data for user ${id} unsuccesful`, err));
-
-
