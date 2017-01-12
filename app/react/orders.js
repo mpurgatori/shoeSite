@@ -22,7 +22,7 @@ var defaultState = {
 export default function (prev = defaultState, action){
 	switch (action.type){
 		case GET_USER_ORDERS:
-			return Object.assign({}, prev, {orders: action.orders}
+			return Object.assign({}, prev, {orders: action.orders})
 		default: return prev
 	}
 }
