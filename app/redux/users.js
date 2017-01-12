@@ -23,9 +23,9 @@ const getAllUsers  = users => ({ type: GET_ALL_USERS, users });
 /* ------------------    REDUCER    --------------------- */
 
 var defaultState = {
-	allUsers:[]
+	allUsers:[],
 	currentUser:{
-		email: ''
+		email: '',
 		firstName: '',
 		lastName: '',
 		address: '',
@@ -36,9 +36,11 @@ var defaultState = {
 export default function (prev = defaultState, action){
 	switch (action.type){
 		case SET_ADDRESS:
-			return Object.assign({}, prev, {currentUser.address: action.address})
+			let newState = Object.assign({}, prev);
+			newState.currentUser.address = action.address;
+			return newState;
 		case SET_FULL_NAME:
-			return Object.assign({}, prev, {currentUser:action.fullName)
+			return Object.assign({}, prev, {currentUser:action.fullName})
 		case GET_USER_DATA:
 			return Object.assign({}, prev, {currentUser:action.user})
 		case GET_ALL_USERS:
