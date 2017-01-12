@@ -9,6 +9,8 @@ api
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
   .use('/getfilteredshoes', getfilteredshoesRoute)
+  .use('/comments', require('./comments'))
+
 
 // Send along any errors
 api.use((err, req, res, next) => {
