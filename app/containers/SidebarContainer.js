@@ -27,10 +27,11 @@ class SC extends Component {
     this.state = {
       color: [],
       size: [],
-      price: [],
+      price: 0,
       filterShoes: props.filterShoes
     }
     this.addToFilter = this.addToFilter.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
   }
 
   addToFilter(filterItem, filterValue) {
@@ -50,6 +51,13 @@ class SC extends Component {
     }
   }
 
+  handlePriceChange (price) {
+    console.log('hitting InputRange', price);
+    this.setState({
+      price,
+    });
+  }
+
   render() {
     return (
       <Sidebar
@@ -57,7 +65,8 @@ class SC extends Component {
         size={this.state.size}
         price={this.state.price}
         addToFilter={this.addToFilter}
-        filterShoes={this.state.filterShoes}/>
+        filterShoes={this.state.filterShoes}
+        handlePriceChange={this.handlePriceChange} />
     );
   }
 }

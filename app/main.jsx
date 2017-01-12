@@ -21,9 +21,8 @@ render (
     <Route path="/" component={AppContainer}>
       <Route path='/allshoes' component={AllShoesContainer} />
       <Route path="/login" component={LoginForm}/>
-      <Route path="/cart" component={Cart}/ >
+      <Route path="/cart" component={Cart} />
     </Route>
-
     </Router>
   </Provider>,
   document.getElementById('main')
