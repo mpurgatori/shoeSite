@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import Cart from '../components/Cart';
 
 const mapStateToProps = (state, ownProps) => {
+	console.log("STATE:", state)
   return {
-  	pendOrder: state.order.pending
+  	pendingOrder: state.orders.pending
   };
 }
 
@@ -12,7 +13,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {};
 }
 
-const AppContainer = connect(
+const CartContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Cart);

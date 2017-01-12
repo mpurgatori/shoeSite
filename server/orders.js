@@ -2,6 +2,8 @@
 
 const db = require('APP/db')
 const Order= db.model('order')
+const ShoeInventory= db.model('shoe_inventory')
+const ShoeModel= db.model('shoe_model')
 
 const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
 
@@ -13,6 +15,6 @@ module.exports = require('express').Router()
 		.catch(next))
 
 	.get('/pending/:userId', (req, res, next) => 
-		Order.findOne({where: {user_id: req.params.userId, status: 'pending' }})
+		Order.findOne({where: {user_id: req.params.userId, status: 'pending' }, include:[{model:ShoeInventory, include:[{model:ShoeModel}]}]})
 		.then(order => res.json(order))
 		.catch(next))

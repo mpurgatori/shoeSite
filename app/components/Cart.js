@@ -4,19 +4,20 @@ import ShoeOrderCard from './ShoeOrderCard';
 
 		
 
-export default class Cart extends Component {
+export default (props) => {
 
-	constructor(props) {
-		console.log('___________________',props);
-		super(props)
-		}
-	
+		const arrToMap = props.pendingOrder.shoe_inventories
 
-	render() {
-		return <ShoeOrderCard />
+		return (
 
-		}
+			<div>
+			{ arrToMap ? (
+				arrToMap.map( shoe => <ShoeOrderCard key={shoe.id} props={shoe} />)
+				) : null
+			}
+			</div>
+			)
 		
-}
+	}
 
 

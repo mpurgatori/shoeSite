@@ -10,9 +10,11 @@ import AppContainer from './containers/AppContainer'
 import LoginForm from './components/LoginForm'
 
 import AllShoesContainer from './containers/AllShoesContainer'
-import Cart from './components/Cart'
+import CartContainer from './containers/CartContainer'
 
 import {fetchPendingOrder} from './redux/orders'
+
+const exampleUser = {id: 1}
 
 render (
   <Provider store={store}>
@@ -21,7 +23,7 @@ render (
     <Route path="/" component={AppContainer}>
       <Route path='/allshoes' component={AllShoesContainer} />
       <Route path="/login" component={LoginForm}/>
-      <Route path="/cart" component={Cart} onEnter={fetchPendingOrder} />
+      <Route path="/cart" component={CartContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
     </Route>
 
     </Router>
