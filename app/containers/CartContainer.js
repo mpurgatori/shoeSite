@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Cart from '../components/Cart';
 
 const mapStateToProps = (state, ownProps) => {
-	console.log("STATE:", state)
   return {
   	pendingOrder: state.orders.pending
   };

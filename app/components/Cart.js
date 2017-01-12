@@ -5,7 +5,6 @@ import ShoeOrderCard from './ShoeOrderCard';
 		
 
 export default (props) => {
-
 		const arrToMap = props.pendingOrder.shoe_inventories
 
 		return (
