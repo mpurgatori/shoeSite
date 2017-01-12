@@ -21,7 +21,7 @@ render (
     <Route path="/" component={AppContainer}>
       <Route path='/allshoes' component={AllShoesContainer} />
       <Route path="/login" component={LoginForm}/>
-      <Route path="/cart" component={Cart} onEnter={fetchPendingOrder}/ >
+      <Route path="/cart" component={Cart} onEnter={fetchPendingOrder} />
     </Route>
 
     </Router>
