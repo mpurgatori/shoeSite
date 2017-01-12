@@ -1,13 +1,20 @@
 'use strict'
 
 const db = require('APP/db')
-const Comment = db.model('comment')
+const Order= db.model('order')
+const ShoeInventory= db.model('shoe_inventory')
+const ShoeModel= db.model('shoe_model')
 
-const {mustBeLoggedIn, selfOnly,} = require('./auth.filters')
+const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
 	
-	.get('/orders/:userId', mustBeLoggedIn, selfOnly("see your own orders."), (req, res, next) => 
-		Order.findAll({where: {userId: req.params.userId}, order: 'date DESC'})
-		.then(user => res.json(user))
+	.get('/:userId', mustBeLoggedIn, selfOnly("see your own orders."), (req, res, next) => 
+		Order.findAll({where: {user_id: req.params.userId}, order: 'date DESC'})
+		.then(orders => res.json(orders))
+		.catch(next))
+
+	.get('/pending/:userId', (req, res, next) => 
+		Order.findOne({where: {user_id: req.params.userId, status: 'pending' }, include:[{model:ShoeInventory, include:[{model:ShoeModel}]}]})
+		.then(order => res.json(order))
 		.catch(next))
