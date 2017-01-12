@@ -8,7 +8,7 @@ const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
 module.exports = require('express').Router()
 
 	.get('/:userId', mustBeLoggedIn, selfOnly("edit your own comments."), (req, res, next) => 
-		Comment.findAll(where:{userId: req.params.userId})
+		Comment.findAll({where:{userId: req.params.userId}})
 		.then(comments => res.json(comments))
 		.catch(next))
 
@@ -23,7 +23,7 @@ module.exports = require('express').Router()
 		.catch(next))
 
 	.delete('/:id', (req, res, next) =>
-		User.destroy(where: {id: req.params.id})
+		User.destroy({where: {id: req.params.id}})
 		.then(user => res.json(user))
 		.catch(next))
 	

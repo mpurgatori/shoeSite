@@ -5,6 +5,9 @@ const User = db.model('user')
 
 const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
 
+const {mustBeLoggedIn, selfOnly, forbidden} = require('./auth.filters')
+
+
 module.exports = require('express').Router()
 
 	.get('/', forbidden('only admins can list users'), (req, res, next) => 
