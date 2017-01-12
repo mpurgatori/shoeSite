@@ -17,6 +17,8 @@ const mapDispatchToProps = function (dispatch, ownProps) {
         price: filterInfo.price,
       }
       dispatch(filterAllShoes(filterCriteria))
+      filterInfo.this.setState({color: [],
+      size: [], colorToggle: false, sizeToggle: false})
     }
   }
 }
@@ -26,12 +28,24 @@ class SC extends Component {
     super(props);
     this.state = {
       color: [],
+      colorToggle: false,
+      sizeToggle: false,
       size: [],
-      price: [],
+      sliderBar: {
+        min: 0,
+        max: 100,
+      },
+      price: 100,
       filterShoes: props.filterShoes
     }
     this.addToFilter = this.addToFilter.bind(this);
+    this.click = this.click.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
   }
+
+  click(field) {
+      this.setState({[field]: !this.state[field]});
+   }
 
   addToFilter(filterItem, filterValue) {
     const nextState = Object.assign({}, this.state);
@@ -50,14 +64,25 @@ class SC extends Component {
     }
   }
 
+  handlePriceChange (event) {
+    this.setState({price: Number(event.target.value)});
+  }
+
   render() {
+    console.log(this.state.price);
     return (
       <Sidebar
         color={this.state.color}
+        colorToggle={this.state.colorToggle}
         size={this.state.size}
+        sizeToggle={this.state.sizeToggle}
+        sliderBar={this.state.sliderBar}
         price={this.state.price}
         addToFilter={this.addToFilter}
-        filterShoes={this.state.filterShoes}/>
+        click={this.click}
+        filterShoes={this.state.filterShoes}
+        handlePriceChange={this.handlePriceChange}
+        this={this}/>
     );
   }
 }

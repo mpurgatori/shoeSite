@@ -24,11 +24,8 @@ export default function (prev = defaultState, action){
 	switch (action.type){
 		case GET_USER_ORDERS:
 			return Object.assign({}, prev, {orders: action.orders})
-
-
 		case GET_USER_CURRENT_ORDER:
 			return Object.assign({}, prev, {pending: action.order})
-
 		default: return prev
 	}
 }
