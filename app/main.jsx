@@ -12,6 +12,9 @@ import LoginForm from './components/LoginForm'
 import AllShoesContainer from './containers/AllShoesContainer'
 import CartContainer from './containers/CartContainer'
 
+import SingleShoe from './containers/SingleShoeContainer.js'
+
+
 import {fetchPendingOrder} from './redux/orders'
 
 const exampleUser = {id: 1}
@@ -22,6 +25,7 @@ render (
 
     <Route path="/" component={AppContainer}>
       <Route path='/allshoes' component={AllShoesContainer} />
+      <Route path="/allshoes/:shoemodelid" component={SingleShoe} />
       <Route path="/login" component={LoginForm} />
       <Route path="/cart" component={CartContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
     </Route>
