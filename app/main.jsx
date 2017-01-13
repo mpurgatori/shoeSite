@@ -14,7 +14,7 @@ import CartContainer from './containers/CartContainer'
 
 import {fetchPendingOrder} from './redux/orders'
 
-const exampleUser = {id: 3}
+const exampleUser = {id: 1}
 
 render (
   <Provider store={store}>
