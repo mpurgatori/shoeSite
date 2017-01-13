@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const Comment = db.model('comment')
 
-const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
+const {mustBeLoggedIn, selfOnly, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
 
@@ -18,11 +18,11 @@ module.exports = require('express').Router()
 		.catch(next))
 
 	.post('/', (req, res, next) =>
-		User.create(req.body)
+		Comment.create(req.body)
 		.then(user => res.json(user))
 		.catch(next))
 
 	.delete('/:id', (req, res, next) =>
-		User.destroy({where: {id: req.params.id}})
+		Comment.destroy({where: {id: req.params.id}})
 		.then(user => res.json(user))
 		.catch(next))
