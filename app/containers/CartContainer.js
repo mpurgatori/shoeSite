@@ -10,7 +10,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-	let removeShoe = dispatch(removeShoe);
 
   return {
   	removeShoe
