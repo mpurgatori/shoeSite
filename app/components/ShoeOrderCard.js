@@ -2,7 +2,9 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default function (props) {
-  let shoe = props.props;
+  let order = props.order;
+  let shoe = props.shoe;
+  let removeShoe = props.removeShoe;
 
   return (
     <div>
@@ -29,6 +31,7 @@ export default function (props) {
                   Price: { shoe.price }
                 </p>
             </Link>
+            <button onClick={() => removeShoe(order.id, shoe.id)}> x </button>
           </div>
         </div>
       </div>
