@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default function (props) {
-  console.log("PROPSSSSS:", props);
   let order = props.order;
   let shoe = props.shoe;
 
