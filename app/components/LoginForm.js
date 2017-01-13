@@ -1,57 +1,10 @@
 import React, { Component } from 'react'
 
-export default class LoginForm extends Component { 
+export default function (props) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      returningUser: false,
-      email: "",
-      password: "",
-      address: "",
-      firstName: "",
-      lastName: "",
-      error: ""
-
-    }
-    this.renderForm = this.renderForm.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  // login method
-
-  // signup method
-
-  onLoginSuccess() {
-    this.setState({ 
-      returningUser: false,
-      email: "",
-      password: "",
-      address: "",
-      firstName: "",
-      lastName: "",
-      error: ""
-      })
-  }
-
-  onLoginFail() {
-    this.setState({
-      error: "Authentication Failed."
-    })
-  }
-
-  handleChange(event, field) {
-    this.setState({[field]: event.target.value});
-  }
-
-  handleLoginToggle() {
-    let newReturningUser = !this.state.returningUser;
-    this.setState({ returningUser: newReturningUser })
-  }
-
-  renderForm() {
-    console.log("state:", this.state);
-    if (this.state.returningUser) {
+  console.log("props:", props);
+  const renderForm = () => {
+    if (props.returningUser) {
       return (
         <div>
           <form onSubmit={evt => {
@@ -59,26 +12,26 @@ export default class LoginForm extends Component {
               login(evt.target.username.value, evt.target.password.value)
             } }>
             <div>
-              <input 
+              <input
                 name="Email"
                 placeholder="Email"
-                onChange={(event) => { this.handleChange(event, 'email')}}
-                value={this.state.email} />
+                onChange={(event) => { props.handleChange(event, 'email')}}
+                value={props.email} />
             </div>
             <div>
-              <input 
+              <input
                 name="Password"
                 placeholder="Password"
-                onChange={ (event) => { this.handleChange(event, 'password') }}
-                value={this.state.password}
+                onChange={ (event) => { props.handleChange(event, 'password') }}
+                value={props.password}
                 />
             </div>
 
             <div>
-              <button> Login </button>
+              <button onClick={() => {props.createLoginUser('Login', props)}}> Login </button>
             </div>
           </form>
-          <button onClick={this.handleLoginToggle.bind(this)}> New User? Sign Up! </button>
+          <button onClick={() => {props.handleLoginToggle()}}> New User? Sign Up! </button>
         </div>
         )
     }
@@ -90,61 +43,59 @@ export default class LoginForm extends Component {
                 login(evt.target.username.value, evt.target.password.value)
             } }>
             <div>
-              <input 
+              <input
                 name="First Name"
                 placeholder="First Name"
-                onChange={(event) => { this.handleChange(event, 'firstName')}}
-                value={this.state.firstName} />
+                onChange={(event) => { props.handleChange(event, 'firstName')}}
+                value={props.firstName} />
             </div>
             <div>
-              <input 
+              <input
                 name="Last Name"
                 placeholder="Last Name"
-                onChange={(event) => { this.handleChange(event, 'lastName')}}
-                value={this.state.lastName} />
+                onChange={(event) => { props.handleChange(event, 'lastName')}}
+                value={props.lastName} />
             </div>
             <div>
-              <input 
+              <input
                 name="Email"
                 placeholder="Email"
-                onChange={(event) => { this.handleChange(event, 'email')}}
-                value={this.state.email} />
+                onChange={(event) => { props.handleChange(event, 'email')}}
+                value={props.email} />
             </div>
             <div>
-              <input 
+              <input
                 name="Password"
                 placeholder="Password"
-                onChange={ (event) => { this.handleChange(event, 'password') }}
-                value={this.state.password}
+                onChange={ (event) => { props.handleChange(event, 'password') }}
+                value={props.password}
                 />
             </div>
             <div>
-              <input 
+              <input
                 name="Address"
                 placeholder="Address"
-                onChange={(event) => { this.handleChange(event, 'address')}}
-                value={this.state.address}
+                onChange={(event) => { props.handleChange(event, 'address')}}
+                value={props.address}
                 />
             </div>
             <div>
-              <button> Sign Up </button>
+              <button onClick={() => {props.createLoginUser('Signup', props)}}> Sign Up </button>
             </div>
           </form>
           <text style={{fontSize: 20, color: 'red'}}>
-            {this.state.error}
+            {props.error}
           </text>
-          <button onClick={this.handleLoginToggle.bind(this)}> Returning user? Log in! </button>
+          <button onClick={() => {props.handleLoginToggle()}}> Returning user? Log in! </button>
         </div>
       )
     }
   }
 
-  render() {
-    return (
-      <div>
-      {this.renderForm()}
-      </div>
+  return (
+    <div>
+      {renderForm()}
+    </div>
   )
-}
-}
 
+}
