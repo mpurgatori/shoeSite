@@ -4,7 +4,9 @@ import SingleShoe from '../components/SingleShoe.jsx';
 import axios from 'axios';
 
 const mapStateToProps = (state, ownProps) => {
-  return {};
+  return {
+    shoeModel: state.singleShoe.shoe
+  };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

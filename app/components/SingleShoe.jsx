@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 
-export default class SingleShoe extends Component {
-
-  constructor(props) {
+export default class SCC extends Component {
+  constructor(props){
     super(props)
-    }
+  }
 
-
-  render() {
+  render(){
       return (
         <div>
             <div>
@@ -29,11 +27,11 @@ export default class SingleShoe extends Component {
                 <select className="form-control" id="sel2" name='color' >
                   <option>COLOR</option>
                 </select>
-            </div>
-                </fieldset>
-              </form>
-            </div>
-            <div>
+              </div>
+                  </fieldset>
+                </form>
+              </div>
+              <div>
                     <p style={{fontSize: '2em'}}>
                       Gender: SHOE GENDER
                     </p>
@@ -49,6 +47,6 @@ export default class SingleShoe extends Component {
               </div>
             </div>
         </div>
-    )
-  }
+      )
+    }
 }
