@@ -13,43 +13,41 @@ const REMOVE_USER   = 'REMOVE_USER';
 
 /* --------------    ACTION CREATORS    ----------------- */
 
-const setAddress = address => ({ type: SET_ADDRESS, address });
+const setAddress  = address => ({ type: SET_ADDRESS, address });
 const setFullName = fullName => ({ type: SET_FULL_NAME, fullName });
 const deleteUser  = user => ({ type: REMOVE_USER, user });
-const getUserData  = user => ({ type: GET_USER_DATA, user });
-const getAllUsers  = users => ({ type: GET_ALL_USERS, users });
+const getUserData = user => ({ type: GET_USER_DATA, user });
+const getAllUsers = users => ({ type: GET_ALL_USERS, users });
 const createUser  = user => ({ type: ADD_USER, user });
+const selectUser  = user => ({ type: SELECT_USER, user }); // may need to limit fields 
 //const setPassord = user => ({ type: SET_PASSWORD, blah });
 
 /* ------------------    REDUCER    --------------------- */
 
 var defaultState = {
-	allUsers:[],
-	currentUser:{
-		email: '',
-		firstName: '',
-		lastName: '',
-		address: '',
-		admin: false,
-	}
+	all:[], // for admin
+	filtered:[], // for admin
+	selected:{}, // for admin
+	current:{}, 
 }
 
 export default function (prev = defaultState, action){
+	const nextStore = obj => Object.assign({}, prev, obj)
 	switch (action.type){
 		case SET_ADDRESS:
-			return Object.assign({}, prev, {currentUser: {address: action.address}})
+			return nextStore({current: {address: action.address}})
 		case SET_FULL_NAME:
-			return Object.assign({}, prev, {currentUser: action.fullName})
+			return nextStore({current: action.fullName})
 		case GET_USER_DATA:
-			return Object.assign({}, prev, {currentUser: action.user})
+			return nextStore({current: action.user})
 		case GET_ALL_USERS:
-			return Object.assign({}, prev, {allUsers: action.users})
+			return nextStore({all: action.users})
 		case REMOVE_USER:
-			return Object.assign({}, prev, {users: action.users})
+			return nextStore({all: action.users})
 		case ADD_USER:
-			return Object.assign({}, prev, action.user)
+			return nextStore(action.user)
 		// case SET_PASSWORD:
-		// 	return Object.assign({}, prev, action.password)
+		// 	return nextStore(action.password)
 		default: return prev
 	}
 }
@@ -58,7 +56,8 @@ export default function (prev = defaultState, action){
 
 export const updateAddress = (userId, address) => dispatch =>
     axios.put(`/api/users/${userId}`, {address})
-       .then(res => dispatch(setAddress(res.data.address)));
+       .then(res => dispatch(setAddress(res.data.address)))
+       .catch(err => console.error(`Updating address unsuccessful`, err))
 
 export const updateName = (userId, firstName, lastName) => dispatch =>
     axios.put(`/api/users/${userId}`, {firstName, lastName})
@@ -71,13 +70,19 @@ export const removeUser = id => dispatch =>
 	axios.delete(`/api/users/${id}`)
 		.then( () => dispatch(deleteUser(id)))
     .catch(err => console.error(`Removing user: ${id} unsuccesful`, err));
+}
 
 export const fetchAllUsers = () => dispatch =>
     axios.get('/api/users')
    .then(res => dispatch(getAllUsers(res.data)))
    .catch(err => console.error(`Retrieving user list unsuccesful`, err));
 
-export const fetchUserData = (id, user) => dispatch =>
+export const selectUser = (id, user) => dispatch => 
+  	axios.get(`/api/users/${id}`, user)
+   .then(res => dispatch(getUserData(res.data)))
+   .catch(err => console.error(`Retrieving data for user ${id} unsuccesful`, err));
+
+export const setCurrentUser = (id, user) => dispatch => 
   	axios.get(`/api/users/${id}`, user)
    .then(res => dispatch(getUserData(res.data)))
    .catch(err => console.error(`Retrieving data for user ${id} unsuccesful`, err));
