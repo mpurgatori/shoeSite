@@ -12,7 +12,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
-  	removeShoe
+  	removeShoe: function(orderId, shoeId) {
+  		dispatch(removeShoe(orderId, shoeId));
+  	}
   };
 }
 

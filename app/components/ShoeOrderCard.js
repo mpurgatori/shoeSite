@@ -31,7 +31,7 @@ export default function (props) {
                   Price: { shoe.price }
                 </p>
             </Link>
-            <button onClick={removeShoe(order.id, shoe.id)}> x </button>
+            <button onClick={() => removeShoe(order.id, shoe.id)}> x </button>
           </div>
         </div>
       </div>
