@@ -40,7 +40,6 @@ export const fetchUserOrders = user => dispatch => {
 
 
 export const fetchPendingOrder = user => dispatch => {
-	console.log("DISPATCH: ", dispatch);
   axios.get(`/api/orders/pending/${user.id}`)
   .then(res => dispatch(getPendingOrder(res.data)))
   .catch(err => console.error('Problem fetching user\'s orders', err));

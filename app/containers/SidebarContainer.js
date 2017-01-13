@@ -69,7 +69,6 @@ class SC extends Component {
   }
 
   render() {
-    console.log(this.state.price);
     return (
       <Sidebar
         color={this.state.color}
