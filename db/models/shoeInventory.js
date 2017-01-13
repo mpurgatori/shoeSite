@@ -15,10 +15,6 @@ const ShoeInventory = db.define('shoe_inventory', {
     quantity: {
       type: Sequelize.INTEGER,
       allowNull: false
-    },
-    price: {
-      type: Sequelize.FLOAT,
-      allowNull: false
     }
 
 }, {});

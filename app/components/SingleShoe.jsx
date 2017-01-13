@@ -3,40 +3,50 @@ import React, { Component } from 'react'
 export default class SCC extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      shoe: {}
+    }
+    console.log('*!*!*!*!*!*!*!*!*!', this.state.shoe);
+  }
+
+
+  componentWillReceiveProps(nextProps){
+    this.setState({shoe:nextProps.shoeModel})
   }
 
   render(){
+    {console.log('THIS STATE SHOE',this.state.shoe)}
       return (
         <div>
             <div>
               <div className="col-l-12">
                 <p style={{fontSize: '2em'}}>
-                  Name: SHOE BRAND AND NAME
+                  {this.state.shoe.brand} {this.state.shoe.name}
                 </p>
-                <img src='https://img1.etsystatic.com/000/0/5120282/il_570xN.266946931.jpg' />
-              </div>
-              <div className="col-xs-4">
-                <form className="form-horizontal">
-                  <fieldset>
-              <div className="form-group" style={{display: 'block'}}>
-                <label htmlFor="sel2">SIZE:</label>
-                <select className="form-control" id="sel1" name='courseId'>
-                  <option>SIZE</option>
-                </select>
-                <label htmlFor="sel2">COLOR:</label>
-                <select className="form-control" id="sel2" name='color' >
-                  <option>COLOR</option>
-                </select>
-              </div>
-                  </fieldset>
-                </form>
-              </div>
-              <div>
+                <img src={this.state.shoe.image_url} style={{height:500, width:500}} />
+                </div>
+                  <div className="col-xs-4">
+                    <form className="form-horizontal">
+                      <fieldset>
+                    <div className="form-group" style={{display: 'block'}}>
+                      <label htmlFor="sel2">SIZE:</label>
+                      <select className="form-control" id="sel1" name='courseId'>
+                        <option>SIZE</option>
+                      </select>
+                      <label htmlFor="sel2">COLOR:</label>
+                      <select className="form-control" id="sel2" name='color' >
+                        <option>COLOR</option>
+                      </select>
+                    </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                <div>
                     <p style={{fontSize: '2em'}}>
-                      Gender: SHOE GENDER
+                      {this.state.shoe.gender}
                     </p>
                     <p style={{fontSize: '2em'}}>
-                      Price: SHOE PRICE
+                      {this.state.shoe.price}
                     </p>
             </div>
             <div className="col-l-10">
