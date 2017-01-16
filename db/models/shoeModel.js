@@ -29,6 +29,10 @@ const ShoeModel = db.define('shoe_model', {
     country_of_origin: {
       type: Sequelize.STRING,
     },
+    price: {
+      type: Sequelize.FLOAT,
+      allowNull: false
+    },
     rating: {
       type: Sequelize.FLOAT,
       validate: {

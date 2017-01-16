@@ -22,15 +22,7 @@ const ShoeInventory = db.define('shoe_inventory', {
       validate: {
         min: 0
       }
-    },
-    price: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      validate: {
-        min: 0
-      }
     }
-
-}, {});
+  }, {});
 
 module.exports = ShoeInventory;

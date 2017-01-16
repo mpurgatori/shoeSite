@@ -4,6 +4,7 @@ import orders from './orders';
 // import comments from './comments';
 import shoes from './allShoes';
 import auth from './auth';
+import singleShoe from './singleShoe'
 
 export default combineReducers({
 	users,
@@ -11,4 +12,5 @@ export default combineReducers({
 	// comments,
 	shoes,
 	auth,
+	singleShoe
 });

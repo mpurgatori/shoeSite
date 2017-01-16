@@ -95,7 +95,8 @@
           description: "This sneak will give rover the boost and pep to take down them bastards accross town for the city title.",
           country_of_origin: "USA",
           rating: 5,
-          gender: 'Men'
+          gender: 'Men',
+          price: 59.99
       }, {
           brand: "Uggz",
           name: "The Basic",
@@ -104,7 +105,8 @@
           description: "Perfect for a fall afternoon. Just you and your vanilla chai coffee thing.",
           country_of_origin: "Australia",
           rating: 2,
-          gender: 'Women'
+          gender: 'Women',
+          price: 39.99
       }, {
           brand: "Timberlands",
           name: "The Trekker",
@@ -113,7 +115,8 @@
           description: "Go ahead, scale Kilimanjaro in em. We dare you.",
           country_of_origin: "Canada",
           rating: 4,
-          gender: 'Men'
+          gender: 'Men',
+          price: 89.99
       },{
           brand: "Brunswick",
           name: "The Lebowskis",
@@ -122,89 +125,74 @@
           description: "You gotta use so many cuss words?",
           country_of_origin: "USA",
           rating: 1,
-          gender: 'Men'
+          gender: 'Men',
+          price: 129.99
       }],
 
       shoe_inventory: [{
         size: 12,
         color: "White",
-        quantity: 23,
-        price: 59.99
+        quantity: 23
       },{
         size: 11,
         color: "White",
-        quantity: 3,
-        price: 59.99
+        quantity: 3
       },{
         size: 10,
         color: "White",
-        quantity: 11,
-        price: 59.99
+        quantity: 11
       },{
         size: 12,
         color: "Red",
-        quantity: 40,
-        price: 59.99
+        quantity: 40
       },{
         size: 8,
         color: "Brown",
-        quantity: 12,
-        price: 99.99
+        quantity: 12
       },{
         size: 7,
         color: "Brown",
-        quantity: 90,
-        price: 99.99
+        quantity: 90
       },{
         size: 7.5,
         color: "Brown",
-        quantity: 2,
-        price: 99.99
+        quantity: 2
       },{
         size: 8,
         color: "Black",
-        quantity: 20,
-        price: 99.99
+        quantity: 20
       },{
         size: 9.5,
         color: "Grey",
-        quantity: 11,
-        price: 89.99
+        quantity: 11
       },{
         size: 10,
         color: "Green",
-        quantity: 111,
-        price: 89.99
+        quantity: 111
       },{
         size: 10.5,
         color: "Green",
-        quantity: 2,
-        price: 89.99
+        quantity: 2
       },{
         size: 11.5,
         color: "Black",
-        quantity: 20,
-        price: 89.99
+        quantity: 20
       },{
         size: 13,
         color: "Blue",
-        quantity: 12,
-        price: 39.99
+        quantity: 12
       },{
         size: 8,
         color: "Blue",
-        quantity: 90,
-        price: 39.99
+        quantity: 90
       },{
         size: 12,
         color: "Brown",
-        quantity: 2,
-        price: 39.99
+        quantity: 2
       },{
         size: 11,
         color: "Black",
-        quantity: 20,
-        price: 39.99
+        quantity: 20
       }]
   };
 
@@ -247,20 +235,20 @@
               .then(function(shoeMap) {
                   return Promise.all([
                       invMap[0].setShoe_model(shoeMap[0]),
-                      invMap[1].setShoe_model(shoeMap[1]),
-                      invMap[2].setShoe_model(shoeMap[2]),
-                      invMap[3].setShoe_model(shoeMap[3]),
-                      invMap[4].setShoe_model(shoeMap[0]),
+                      invMap[1].setShoe_model(shoeMap[0]),
+                      invMap[2].setShoe_model(shoeMap[0]),
+                      invMap[3].setShoe_model(shoeMap[0]),
+                      invMap[4].setShoe_model(shoeMap[1]),
                       invMap[5].setShoe_model(shoeMap[1]),
-                      invMap[6].setShoe_model(shoeMap[2]),
-                      invMap[7].setShoe_model(shoeMap[3]),
-                      invMap[8].setShoe_model(shoeMap[0]),
-                      invMap[9].setShoe_model(shoeMap[1]),
+                      invMap[6].setShoe_model(shoeMap[1]),
+                      invMap[7].setShoe_model(shoeMap[1]),
+                      invMap[8].setShoe_model(shoeMap[2]),
+                      invMap[9].setShoe_model(shoeMap[2]),
                       invMap[10].setShoe_model(shoeMap[2]),
-                      invMap[11].setShoe_model(shoeMap[3]),
-                      invMap[12].setShoe_model(shoeMap[0]),
-                      invMap[13].setShoe_model(shoeMap[1]),
-                      invMap[14].setShoe_model(shoeMap[2]),
+                      invMap[11].setShoe_model(shoeMap[2]),
+                      invMap[12].setShoe_model(shoeMap[3]),
+                      invMap[13].setShoe_model(shoeMap[3]),
+                      invMap[14].setShoe_model(shoeMap[3]),
                       invMap[15].setShoe_model(shoeMap[3]),
                   ])
               })
