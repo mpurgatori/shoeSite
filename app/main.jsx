@@ -15,10 +15,6 @@ import ConfirmOrderContainer from './containers/ConfirmOrderContainer'
 
 import SingleShoeContainer from './containers/SingleShoeContainer.js'
 
-
-import SingleShoeContainer from './containers/SingleShoeContainer.js'
-
-
 import {fetchPendingOrder} from './redux/orders'
 import {getShoeModel} from './redux/singleShoe'
 

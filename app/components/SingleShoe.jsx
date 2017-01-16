@@ -39,14 +39,16 @@ export default class SCC extends Component {
                       </fieldset>
                     </form>
                   </div>
-                <div>
+                  <div>
                     <p style={{fontSize: '2em'}}>
                       {this.state.shoe.gender}
                     </p>
+                  </div>
+                  <div>
                     <p style={{fontSize: '2em'}}>
                       {this.state.shoe.price}
                     </p>
-            </div>
+                  </div>
             <div>
               <h4>Product Reviews</h4>
               {this.state.comments.map(comment=> {

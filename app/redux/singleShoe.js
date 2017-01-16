@@ -11,7 +11,7 @@ export const receiveShoe = (shoe) => {
 
 export const getShoeModel = (modelId) => {
   return dispatch => {
-    axios.get(`/api/getfilteredshoes/${modelId}`)
+    axios.get(`/api/shoes/${modelId}`)
     .then(res => {
       console.log('HERE"S RES.DATA', res.data);
       dispatch(receiveShoe(res.data))
