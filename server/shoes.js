@@ -18,8 +18,10 @@ router.get('/:modelId', function(req,res,next){
 })
 
 router.post('/', function(req, res, next) {
+
   const criteria = req.body.criteria;
   const conditions = [];
+  const priceConditions = [];
   if(criteria.color.length) {
     conditions.push({
       color: {
@@ -39,7 +41,7 @@ router.post('/', function(req, res, next) {
   }
 
   if(criteria.price) {
-      conditions.push({
+      priceConditions.push({
         price: {
           $lt: criteria.price,
         },
@@ -47,6 +49,9 @@ router.post('/', function(req, res, next) {
   }
 
   const whatWeGiveSequelize = {
+    where: {
+      $and: priceConditions
+    },
     include: [{
       model: ShoeInventory,
       where: {

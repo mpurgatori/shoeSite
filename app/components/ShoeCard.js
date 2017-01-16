@@ -20,7 +20,7 @@ export default function (props) {
                   Gender: { shoe.gender }
                 </p>
                 <p style={{fontSize: '1.6em'}}>
-                  Price: { shoe.shoe_inventories[0].price }
+                  Price: { shoe.price }
                 </p>
             </Link>
           </div>
@@ -29,7 +29,3 @@ export default function (props) {
     </div>
   );
 };
-
-
-
-

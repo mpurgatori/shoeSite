@@ -36,9 +36,9 @@ class SC extends Component {
       size: [],
       sliderBar: {
         min: 0,
-        max: 100,
+        max: 200,
       },
-      price: 100,
+      price: 200,
       filterShoes: props.filterShoes
     }
     this.addToFilter = this.addToFilter.bind(this);
