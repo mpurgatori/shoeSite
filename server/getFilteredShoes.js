@@ -10,8 +10,7 @@ router.get('/:modelId', function(req,res,next){
     where: {
       id: req.params.modelId
     },
-    include:[Comment],
-    include:[ShoeInventory]
+    include:[ShoeInventory, Comment]
   })
   .then(function(shoe){
     res.send(shoe)

@@ -38,7 +38,7 @@ const ShoeModel = db.define('shoe_model', {
       },
     },
     gender: {
-      type: Sequelize.ENUM('F', 'M')
+      type: Sequelize.ENUM('Women', 'Men')
     }
 
 }, {});

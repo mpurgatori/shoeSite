@@ -4,20 +4,20 @@ export default class SCC extends Component {
   constructor(props){
     super(props)
     this.state = {
-      shoe: {}
+      shoe: {},
+      inventories: [],
+      comments: []
     }
-    console.log('*!*!*!*!*!*!*!*!*!', this.state.shoe);
   }
 
 
   componentWillReceiveProps(nextProps){
-    this.setState({shoe:nextProps.shoeModel})
+    this.setState({shoe:nextProps.shoeModel, inventories:nextProps.shoeModel.shoe_inventories, comments:nextProps.shoeModel.comments})
   }
 
   render(){
-    {console.log('THIS STATE SHOE',this.state.shoe)}
+    {console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^', this.props)}
       return (
-        <div>
             <div>
               <div className="col-l-12">
                 <p style={{fontSize: '2em'}}>
@@ -29,13 +29,11 @@ export default class SCC extends Component {
                     <form className="form-horizontal">
                       <fieldset>
                     <div className="form-group" style={{display: 'block'}}>
-                      <label htmlFor="sel2">SIZE:</label>
-                      <select className="form-control" id="sel1" name='courseId'>
-                        <option>SIZE</option>
-                      </select>
-                      <label htmlFor="sel2">COLOR:</label>
-                      <select className="form-control" id="sel2" name='color' >
-                        <option>COLOR</option>
+                      <select className="form-control" id="sel1" name='sizecolor'>
+                        <option>SELECT SIZE / COLOR</option>
+                          {this.state.inventories.map(shoe=> {
+                            return <option key={shoe.id}>{shoe.size} / {shoe.color}</option>
+                          })}
                       </select>
                     </div>
                       </fieldset>
@@ -49,14 +47,18 @@ export default class SCC extends Component {
                       {this.state.shoe.price}
                     </p>
             </div>
-            <div className="col-l-10">
-                    <p style={{fontSize: '2em'}}>
-                      Description: Bacon ipsum dolor amet beef ribs landjaeger andouille rump pork shoulder biltong. Swine tenderloin filet mignon tri-tip biltong meatball chicken sirloin. Boudin meatloaf turkey filet mignon, chicken bacon beef ribs prosciutto bresaola shankle tongue. Turkey boudin salami beef ribs fatback venison strip steak filet mignon pig kielbasa tail pork pork loin flank. Fatback rump hamburger, boudin biltong chicken porchetta picanha swine salami cupim. Ground round ham corned beef, beef ribs ham hock tenderloin picanha cow jowl short loin jerky.
-                    </p>
-                    <a href="#" className="btn btn-primary btn-warning"><span className="glyphicon glyphicon-shopping-cart"></span> ADD TO CART</a>
-              </div>
+            <div>
+              <h4>Product Reviews</h4>
+              {this.state.comments.map(comment=> {
+                return ( <div key={comment.id}>
+                         <p>Date: {comment.created_at.slice(0,10)}</p>
+                         <p>{comment.body}</p>
+                         <p>{comment.upvotes} users found this comment helpful</p>
+                         </div>
+                )
+              })}
             </div>
-        </div>
+            </div>
       )
     }
 }

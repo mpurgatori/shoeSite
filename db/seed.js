@@ -95,7 +95,7 @@
           description: "This sneak will give rover the boost and pep to take down them bastards accross town for the city title.",
           country_of_origin: "USA",
           rating: 5,
-          gender: 'M',
+          gender: 'Men',
           price: 59.99
       }, {
           brand: "Uggz",
@@ -105,7 +105,7 @@
           description: "Perfect for a fall afternoon. Just you and your vanilla chai coffee thing.",
           country_of_origin: "Australia",
           rating: 2,
-          gender: 'F',
+          gender: 'Women',
           price: 39.99
       }, {
           brand: "Timberlands",
@@ -115,7 +115,7 @@
           description: "Go ahead, scale Kilimanjaro in em. We dare you.",
           country_of_origin: "Canada",
           rating: 4,
-          gender: 'M',
+          gender: 'Men',
           price: 89.99
       },{
           brand: "Brunswick",
@@ -125,7 +125,7 @@
           description: "You gotta use so many cuss words?",
           country_of_origin: "USA",
           rating: 1,
-          gender: 'M',
+          gender: 'Men',
           price: 129.99
       }],
 
