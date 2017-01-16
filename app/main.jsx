@@ -7,7 +7,7 @@ import {connect, Provider} from 'react-redux'
 
 import store from './redux/store'
 import AppContainer from './containers/AppContainer'
-import LoginForm from './components/LoginForm'
+import LoginFormContainer from './containers/LoginFormContainer'
 
 import AllShoesContainer from './containers/AllShoesContainer'
 import CartContainer from './containers/CartContainer'
@@ -34,7 +34,7 @@ render (
     <Route path="/" component={AppContainer}>
       <Route path='/allshoes' component={AllShoesContainer} />
       <Route path="shoe/:shoemodelid" component={SingleShoeContainer} onEnter={onShoeEnter} />
-      <Route path="/login" component={LoginForm} />
+      <Route path="/login" component={LoginFormContainer} />
       <Route path="/cart" component={CartContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
       <Route path="/confirm" component={ConfirmOrderContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
     </Route>

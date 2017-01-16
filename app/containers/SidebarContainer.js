@@ -17,8 +17,11 @@ const mapDispatchToProps = function (dispatch, ownProps) {
         price: filterInfo.price,
       }
       dispatch(filterAllShoes(filterCriteria))
-      filterInfo.this.setState({color: [],
-      size: [], colorToggle: false, sizeToggle: false})
+      filterInfo.this.setState({
+        color: [],
+        size: [],
+        colorToggle: false,
+        sizeToggle: false})
     }
   }
 }

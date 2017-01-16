@@ -17,7 +17,6 @@ router.get('/:modelId', function(req,res,next){
   .catch(next)
 })
 
-
 router.post('/', function(req, res, next) {
   const criteria = req.body.criteria;
   const conditions = [];
