@@ -37,7 +37,7 @@ export default function (prev = defaultState, action){
 /* --------------    THUNKS/DISPATCHERS    -------------- */
 
 export const fetchUserOrders = user => dispatch => {
-  axios.get(`/api/orders/${user.id}`)
+  axios.get(`/api/orders/`, { userID: user.id })
   .then(res => dispatch(getUserOrders(res.data)))
   .catch(err => console.error('Problem fetching user\'s orders', err));
 };

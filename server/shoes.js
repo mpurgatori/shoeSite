@@ -4,11 +4,9 @@ const { ShoeInventory, ShoeModel } = require('APP/db/models/index');
 const util = require('util')
 router.post('/', function(req, res, next) {
   const criteria = req.body.criteria
-  console.log('hitting', criteria);
-  console.log('this is checking if SIZE is an Array', Array.isArray(criteria.size));
 
   const conditions = [];
-  if(criteria.color.length) {
+  if(criteria.color) {
     conditions.push({
       color: {
         $like: {
@@ -26,7 +24,7 @@ router.post('/', function(req, res, next) {
       });
   }
 
-  if(criteria.price) {
+  if(criteria.price.length) {
       conditions.push({
         price: {
           $lt: criteria.price,

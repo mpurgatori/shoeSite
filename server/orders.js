@@ -9,8 +9,10 @@ const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
 	
-	.get('/:userId', mustBeLoggedIn, selfOnly("see your own orders."), (req, res, next) => 
-		Order.findAll({where: {user_id: req.params.userId}, order: 'date DESC'})
+	// this route will only work for get requests with an associated user ID
+	// we do not currently have a 'get all orders' route
+	.get('/', mustBeLoggedIn, selfOnly("see your own orders."), (req, res, next) => 
+		Order.findAll({where: {user_id: req.query.userId}, order: 'date DESC'})
 		.then(orders => res.json(orders))
 		.catch(next))
 
