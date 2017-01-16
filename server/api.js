@@ -11,6 +11,7 @@ api
   .use('/getfilteredshoes', getfilteredshoesRoute)
   .use('/comments', require('./comments'))
   .use('/orders', require('./orders'))
+  .use('/shoes', require('./shoes'))
 
 // Send along any errors
 api.use((err, req, res, next) => {

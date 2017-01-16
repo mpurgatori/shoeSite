@@ -1,38 +1,45 @@
 import axios from 'axios'
 
-const reducer = (state=null, action) => {
-  switch(action.type) {
-  case AUTHENTICATED:
-    return action.user  
-  }
-  return state
-}
+/* --------------    ACTION CONSTANTS    ---------------- */
 
 const AUTHENTICATED = 'AUTHENTICATED'
-export const authenticated = user => ({
-  type: AUTHENTICATED, user
-})
 
-export const login = (username, password) =>
-  dispatch =>
-    axios.post('/api/auth/local/login',
-      {username, password})
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))      
+/* --------------    ACTION CREATORS    ----------------- */
 
-export const logout = () =>
-  dispatch =>
-    axios.post('/api/auth/logout')
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))
+export const authenticated = user=> ({ type: AUTHENTICATED, user })
 
-export const whoami = () =>
-  dispatch =>
-    axios.get('/api/auth/whoami')
-      .then(response => {
-        const user = response.data
-        dispatch(authenticated(user))
-      })
-      .catch(failed => dispatch(authenticated(null)))
+/* ------------------    REDUCER    --------------------- */
 
-export default reducer
+export default (state=null, action) => {
+   switch(action.type) {
+      case AUTHENTICATED: return action.user  
+   }
+   return state
+}
+
+/* --------------    THUNKS/DISPATCHERS    -------------- */
+
+export const login = (username, password) => dispatch =>
+   axios.post('/api/auth/local/login', {username, password})
+   .then(() => dispatch(whoami()))
+   .catch(() => dispatch(whoami()))      
+
+export const logout = () => dispatch =>
+   axios.post('/api/auth/logout')
+   .then(() => dispatch(whoami()))
+   .catch(() => dispatch(whoami()))
+
+export const whoami = () => dispatch =>
+   axios.get('/api/auth/whoami')
+   .then(res => dispatch(authenticated(res.data)))
+   .catch(failed => dispatch(authenticated(null)))
+
+export const updateAddress = (id, address) => dispatch => 
+   axios.put(`/api/users/${id}`, {address})
+   .then(() => dispatch(whoami()))
+   .catch(err => console.error(`Updating address unsuccessful`, err))
+
+export const updateName = (id, firstname, lastname) => dispatch => 
+   axios.put(`/api/users/${id}`, {firstname, lastname})
+   .then(() => dispatch(whoami()))
+   .catch(err => console.error(`Updating name unsuccessful`, err))
