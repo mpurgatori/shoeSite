@@ -62,7 +62,7 @@ export default function (props) {
       </section>
       <section>
         <h4 className="menu-item">
-          <label htmlFor="cbox3">Price</label>
+          <label htmlFor="cbox3">Price Range</label>
         </h4>
         <div>
           <div id="slider">
@@ -77,7 +77,7 @@ export default function (props) {
                        onChange={(e) => {props.handlePriceChange(e)}}
                        id="price_id"
                        />
-                   <span style={{ paddingLeft: 2}} >{props.price} / 100</span>
+                   <span style={{ paddingLeft: 2}} >0 - {props.price}</span>
                </div>
         </div>
       </section>

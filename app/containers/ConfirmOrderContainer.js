@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Cart from '../components/Cart';
-import { removeShoe } from '../redux/orders';
+import ConfirmOrder from '../components/ConfirmOrder';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -11,16 +11,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
-  return {
-  	removeShoe: function(orderId, shoeId) {
-  		dispatch(removeShoe(orderId, shoeId));
-  	}
-  };
+  return { };
 }
 
-const CartContainer = connect(
+const ConfirmOrderContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Cart);
+)(ConfirmOrder);
 
-export default CartContainer;
+export default ConfirmOrderContainer;
