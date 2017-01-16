@@ -1,11 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const { ShoeInventory, ShoeModel } = require('APP/db/models/index');
+const { ShoeInventory, ShoeModel, Comment } = require('APP/db/models/index');
 const util = require('util')
+
+
+
+router.get('/:modelId', function(req,res,next){
+  return ShoeModel.findOne({
+    where: {
+      id: req.params.modelId
+    },
+    include:[ShoeInventory, Comment]
+  })
+  .then(function(shoe){
+    res.send(shoe)
+  })
+  .catch(next)
+})
+
+
 router.post('/', function(req, res, next) {
   const criteria = req.body.criteria
-  console.log('hitting', criteria);
-  console.log('this is checking if SIZE is an Array', Array.isArray(criteria.size));
+
 
   const conditions = [];
   if(criteria.color.length) {
