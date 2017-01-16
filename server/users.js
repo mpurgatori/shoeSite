@@ -13,8 +13,19 @@ module.exports = require('express').Router()
 		.catch(next))
 
 	.post('/', (req, res, next) =>
-		User.create(req.body)
-		.then(user => res.status(201).json(user))
+		User.create({
+			email: req.body.userInfo.email,
+			password: req.body.userInfo.password,
+			address: req.body.userInfo.address,
+			firstname: req.body.userInfo.firstname,
+			lastname: req.body.userInfo.lastname,
+			admin: false
+		})
+		.then(user => {
+			req.login(user, function() {
+				res.status(201).json(user);
+			})
+		})
 		.catch(next))
 
 	.get('/:userId', mustBeLoggedIn, selfOnly("see your own user details."), (req, res, next) =>

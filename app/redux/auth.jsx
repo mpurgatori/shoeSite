@@ -13,10 +13,18 @@ export const authenticated = user => ({
   type: AUTHENTICATED, user
 })
 
-export const login = (email, password) =>
+export const create = (userInfo) =>
+  dispatch =>
+    axios.post('/api/users/',
+      {userInfo})
+      .then(() => dispatch(whoami()))
+      // .then((res) => dispatch(login(res.data.email, userInfo.password)))
+      .catch(() => dispatch(whoami()))
+
+export const login = (username, password) =>
   dispatch =>
     axios.post('/api/auth/local/login',
-      {email, password})
+      {username, password})
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 

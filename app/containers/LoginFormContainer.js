@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import LoginForm from '../components/LoginForm';
+import {login, create} from '../redux/auth.jsx'
 
 const mapStateToProps = (state, ownProps) => {
   return {};
@@ -8,18 +9,16 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    createUser: (e, props) => {
-      e.preventDefault()
-      dispatch(creatingUser({
+    createUser: (props) => {
+      dispatch(create({
         email: props.email,
         password: props.password,
         address: props.address,
-        firstName: props.firstName,
-        lastName: props.lastName,
+        firstname: props.firstname,
+        lastname: props.lastname,
       }))
     },
-    loginUser: (e, props) => {
-      e.preventDefault()
+    loginUser: (props) => {
       dispatch(login({
         email: props.email,
         password: props.password,
@@ -36,8 +35,8 @@ class LIF extends Component {
       email: "",
       password: "",
       address: "",
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       error: "",
       createUser: props.createUser,
       loginUser: props.loginUser,
@@ -52,8 +51,8 @@ class LIF extends Component {
       email: "",
       password: "",
       address: "",
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       error: ""
       })
   }
@@ -79,13 +78,13 @@ class LIF extends Component {
         email={this.state.email}
         password={this.state.password}
         address={this.state.address}
-        firstName={this.state.firstName}
-        lastName={this.state.lastName}
+        firstname={this.state.firstname}
+        lastname={this.state.lastname}
         error={this.state.error}
         handleLoginToggle={this.handleLoginToggle}
         handleChange={this.handleChange}
-        createUser={props.createUser}
-        loginUser={props.loginUser}
+        createUser={this.state.createUser}
+        loginUser={this.state.loginUser}
       />
     )
   }
