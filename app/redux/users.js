@@ -70,17 +70,17 @@ export const removeUser = id => dispatch =>
 	axios.delete(`/api/users/${id}`)
 		.then( () => dispatch(deleteUser(id)))
     .catch(err => console.error(`Removing user: ${id} unsuccesful`, err));
-}
+
 
 export const fetchAllUsers = () => dispatch =>
     axios.get('/api/users')
    .then(res => dispatch(getAllUsers(res.data)))
    .catch(err => console.error(`Retrieving user list unsuccesful`, err));
 
-export const selectUser = (id, user) => dispatch => 
-  	axios.get(`/api/users/${id}`, user)
-   .then(res => dispatch(getUserData(res.data)))
-   .catch(err => console.error(`Retrieving data for user ${id} unsuccesful`, err));
+// export const selectUser = (id, user) => dispatch => 
+//   	axios.get(`/api/users/${id}`, user)
+//    .then(res => dispatch(getUserData(res.data)))
+//    .catch(err => console.error(`Retrieving data for user ${id} unsuccesful`, err));
 
 export const setCurrentUser = (id, user) => dispatch => 
   	axios.get(`/api/users/${id}`, user)
