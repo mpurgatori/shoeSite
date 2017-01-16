@@ -3,10 +3,10 @@ const router = express.Router();
 const { ShoeInventory, ShoeModel } = require('APP/db/models/index');
 const util = require('util')
 router.post('/', function(req, res, next) {
-  const criteria = req.body.criteria
+  const criteria = req.body.criteria;
 
   const conditions = [];
-  if(criteria.color) {
+  if(criteria.color.length) {
     conditions.push({
       color: {
         $like: {
@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
       });
   }
 
-  if(criteria.price.length) {
+  if(criteria.price) {
       conditions.push({
         price: {
           $lt: criteria.price,

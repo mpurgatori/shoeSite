@@ -95,7 +95,7 @@
           description: "This sneak will give rover the boost and pep to take down them bastards accross town for the city title.",
           country_of_origin: "USA",
           rating: 5,
-          gender: 'M'
+          gender: 'Men'
       }, {
           brand: "Uggz",
           name: "The Basic",
@@ -104,7 +104,7 @@
           description: "Perfect for a fall afternoon. Just you and your vanilla chai coffee thing.",
           country_of_origin: "Australia",
           rating: 2,
-          gender: 'F'
+          gender: 'Women'
       }, {
           brand: "Timberlands",
           name: "The Trekker",
@@ -113,7 +113,7 @@
           description: "Go ahead, scale Kilimanjaro in em. We dare you.",
           country_of_origin: "Canada",
           rating: 4,
-          gender: 'M'
+          gender: 'Men'
       },{
           brand: "Brunswick",
           name: "The Lebowskis",
@@ -122,7 +122,7 @@
           description: "You gotta use so many cuss words?",
           country_of_origin: "USA",
           rating: 1,
-          gender: 'M'
+          gender: 'Men'
       }],
 
       shoe_inventory: [{
