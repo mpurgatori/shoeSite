@@ -21,18 +21,21 @@ export const create = (userInfo) =>
       // .then((res) => dispatch(login(res.data.email, userInfo.password)))
       .catch(() => dispatch(whoami()))
 
-export const login = (username, password) =>
-  dispatch =>
+export const login = (username, password) => {
+  console.log(username);
+  return dispatch =>
     axios.post('/api/auth/local/login',
       {username, password})
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
+  }
 
-export const logout = () =>
-  dispatch =>
+export const logout = () => {
+  return dispatch =>
     axios.post('/api/auth/logout')
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
+}
 
 export const whoami = () =>
   dispatch =>

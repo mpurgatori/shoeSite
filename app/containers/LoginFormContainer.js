@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import LoginForm from '../components/LoginForm';
-import {login, create} from '../redux/auth.jsx'
+import {login, create, logout} from '../redux/auth.jsx'
 
 const mapStateToProps = (state, ownProps) => {
-  return {};
+  return {
+    auth: state.auth,
+  };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -19,10 +21,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }))
     },
     loginUser: (props) => {
-      dispatch(login({
-        email: props.email,
-        password: props.password,
-      }))
+      dispatch(login(props.email, props.password))
+      props.onLoginSuccess();
     }
   };
 }
@@ -38,9 +38,11 @@ class LIF extends Component {
       firstname: "",
       lastname: "",
       error: "",
+      auth: props.auth,
       createUser: props.createUser,
       loginUser: props.loginUser,
     }
+    this.onLoginSuccess = this.onLoginSuccess.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLoginToggle = this.handleLoginToggle.bind(this)
   }
@@ -81,6 +83,8 @@ class LIF extends Component {
         firstname={this.state.firstname}
         lastname={this.state.lastname}
         error={this.state.error}
+        auth={this.state.auth}
+        onLoginSuccess={this.onLoginSuccess}
         handleLoginToggle={this.handleLoginToggle}
         handleChange={this.handleChange}
         createUser={this.state.createUser}
