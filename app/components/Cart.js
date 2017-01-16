@@ -13,15 +13,13 @@ export default (props) => {
 				arrToMap.map( shoe => {
 					return (<div>
 						<ShoeOrderCard key={shoe.id} shoe={shoe} order={order} removeShoe={ removeShoe } />
-						<button onClick={() => removeShoe(order.id, shoe.id)}> x </button>
+						<button className="btn btn-xs btn-danger" onClick={() => removeShoe(order.id, shoe.id)}> x </button>
 					</div>)
 					})
 				) : null
 			}
-			<a href="/confirm">Place Order</a>
+			<a href="/confirm" className="btn btn-lg btn-success"> PLACE ORDER </a>
 		</div>
 		)
 	
 }
-
-
