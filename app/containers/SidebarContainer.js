@@ -17,8 +17,11 @@ const mapDispatchToProps = function (dispatch, ownProps) {
         price: filterInfo.price,
       }
       dispatch(filterAllShoes(filterCriteria))
-      filterInfo.this.setState({color: [],
-      size: [], colorToggle: false, sizeToggle: false})
+      filterInfo.this.setState({
+        color: [],
+        size: [],
+        colorToggle: false,
+        sizeToggle: false})
     }
   }
 }
@@ -33,9 +36,9 @@ class SC extends Component {
       size: [],
       sliderBar: {
         min: 0,
-        max: 100,
+        max: 200,
       },
-      price: 100,
+      price: 200,
       filterShoes: props.filterShoes
     }
     this.addToFilter = this.addToFilter.bind(this);
@@ -69,7 +72,6 @@ class SC extends Component {
   }
 
   render() {
-    console.log(this.state.price);
     return (
       <Sidebar
         color={this.state.color}

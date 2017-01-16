@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import AllShoes from '../components/AllShoes';
+import SingleShoe from '../components/SingleShoe.jsx';
 import axios from 'axios';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    allShoes: state.shoes.shoes,
+    shoeModel: state.singleShoe.shoe
   };
 }
 
@@ -13,9 +13,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {};
 }
 
-const AllShoesContainer = connect(
+const SingleShoeContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AllShoes);
+)(SingleShoe);
 
-export default AllShoesContainer;
+export default SingleShoeContainer;

@@ -7,15 +7,27 @@ import {connect, Provider} from 'react-redux'
 
 import store from './redux/store'
 import AppContainer from './containers/AppContainer'
-import LoginForm from './components/LoginForm'
+import LoginFormContainer from './containers/LoginFormContainer'
 
 import AllShoesContainer from './containers/AllShoesContainer'
 import CartContainer from './containers/CartContainer'
-import ProfileContainer from './containers/ProfileContainer'
+import ConfirmOrderContainer from './containers/ConfirmOrderContainer'
 
-import {fetchPendingOrder, getUserOrders} from './redux/orders'
+import SingleShoeContainer from './containers/SingleShoeContainer.js'
+import ProfileContainer from './containers/ProfileContainer.js'
 
-const exampleUser = {id: 1}
+
+import {fetchPendingOrder} from './redux/orders'
+import {getShoeModel} from './redux/singleShoe'
+
+
+
+const onShoeEnter = function (nextRouterState) {
+  const shoemodelId = nextRouterState.params.shoemodelid;
+  store.dispatch(getShoeModel(shoemodelId));
+};
+
+const exampleUser = {id:1};
 
 render (
   <Provider store={store}>
@@ -28,12 +40,10 @@ render (
         component={ProfileContainer}
         onEnter={next => store.dispatch(getUserOrders(next.params.id))}
       />
-      <Route path="/login" component={LoginForm} />
-      <Route
-        path="/cart" 
-        component={CartContainer}
-        onEnter={store.dispatch(fetchPendingOrder(exampleUser))} 
-      />
+      <Route path="shoe/:shoemodelid" component={SingleShoeContainer} onEnter={onShoeEnter} />
+      <Route path="/login" component={LoginFormContainer} />
+      <Route path="/cart" component={CartContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
+      <Route path="/confirm" component={ConfirmOrderContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
     </Route>
     </Router>
   </Provider>,

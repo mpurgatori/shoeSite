@@ -2,28 +2,29 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default function (props) {
+  let shoe = props.props;
 
-  const shoeModel = props.shoeModel;
-  const shoe = shoeModel.shoe_inventories[0]
   return (
     <div>
-      <h3 className="col-xs-10 col-xs-offset-1"></h3>
-      <div className="row">
-
-            <div className="col-xs-10 col-xs-offset-1" key={ shoe.id }>
-              <Link className="thumbnail" to={`allshoes/${shoeModel.id}/${shoe.id}`}>
-                <div className="caption">
-                  <img src={shoeModel.image_url} style={{ height: 200, width: 200}}/>
-                  <p style={{fontSize: '1.6em'}}>
-                    <span>{ shoeModel.name }</span>
-                  </p>
-                  <p style={{fontSize: '1.6em'}}>
-                    <span>{ shoeModel.description }</span>
-                  </p>
-                </div>
-              </Link>
-            </div>
-
+      <div className="row thumbnail">
+        <div>
+          <div className="col-xs-4">
+              <img src={shoe.image_url} style={{ height: 200, width: 200 }} />
+          </div>
+          <div className="col-xs-8">
+            <Link  to={`shoe/${shoe.id}`}>
+                <p style={{fontSize: '1.6em'}}>
+                  {shoe.brand} "{ shoe.name }"
+                </p>
+                <p style={{fontSize: '1.6em'}}>
+                  Gender: { shoe.gender }
+                </p>
+                <p style={{fontSize: '1.6em'}}>
+                  Price: { shoe.price }
+                </p>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

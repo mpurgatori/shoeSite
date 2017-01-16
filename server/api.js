@@ -1,17 +1,16 @@
+
 'use strict'
 
 const db = require('APP/db')
 const api = module.exports = require('express').Router()
-const getfilteredshoesRoute = require('./getFilteredShoes')
 
 api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
-  .use('/getfilteredshoes', getfilteredshoesRoute)
+  .use('/shoes', require('./shoes'))
   .use('/comments', require('./comments'))
   .use('/orders', require('./orders'))
-  .use('/shoes', require('./shoes'))
 
 // Send along any errors
 api.use((err, req, res, next) => {

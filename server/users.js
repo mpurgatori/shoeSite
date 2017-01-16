@@ -1,3 +1,4 @@
+
 'use strict'
 
 const db = require('APP/db')
@@ -12,9 +13,20 @@ module.exports = require('express').Router()
 		.then(users => res.json(users))
 		.catch(next))
 
-	.post('/', (req, res, next) => 
-		User.create(req.body)
-		.then(user => res.status(201).json(user))
+	.post('/', (req, res, next) =>
+		User.create({
+			email: req.body.userInfo.email,
+			password: req.body.userInfo.password,
+			address: req.body.userInfo.address,
+			firstname: req.body.userInfo.firstname,
+			lastname: req.body.userInfo.lastname,
+			admin: false
+		})
+		.then(user => {
+			req.login(user, function() {
+				res.status(201).json(user);
+			})
+		})
 		.catch(next))
 
 	.get('/:id', mustBeLoggedIn, selfOnly("retrieve your own user details."), (req, res, next) =>
@@ -31,3 +43,4 @@ module.exports = require('express').Router()
 		User.destroy({where: {id: req.params.id}})
 		.then(user => res.json({}))
 		.catch(next))
+
