@@ -12,7 +12,7 @@ export default function (props) {
               <img src={shoe.shoe_model.image_url} style={{ height: 200, width: 200 }} />
           </div>
           <div className="col-xs-8">
-            <Link  to={`allshoes/${shoe.id}`}>
+            <Link  to={`shoe/${shoe.id}`}>
                 <p style={{fontSize: '1.6em'}}>
                   Name: {shoe.shoe_model.brand} { shoe.shoe_model.name }
                 </p>
