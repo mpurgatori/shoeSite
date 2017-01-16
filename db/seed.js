@@ -94,7 +94,7 @@
           image_url: "http://thethings3.imgix.net/wp-content/uploads/2016/04/26complex.jpg?auto=format&lossless=1&q=90&w=612&h=612&fit=crop",
           description: "This sneak will give rover the boost and pep to take down them bastards accross town for the city title.",
           country_of_origin: "USA",
-          rating: 5,
+          rating: 5
           gender: 'Men',
           price: 59.99
       }, {

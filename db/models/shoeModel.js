@@ -18,7 +18,10 @@ const ShoeModel = db.define('shoe_model', {
     },
     image_url: {
       type: Sequelize.TEXT,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isUrl: true
+      }
     },
     description: {
       type: Sequelize.TEXT
@@ -31,7 +34,7 @@ const ShoeModel = db.define('shoe_model', {
       allowNull: false
     },
     rating: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.FLOAT,
       validate: {
         min: 1,
         max: 5,

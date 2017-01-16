@@ -11,6 +11,7 @@ import LoginForm from './components/LoginForm'
 
 import AllShoesContainer from './containers/AllShoesContainer'
 import CartContainer from './containers/CartContainer'
+import ConfirmOrderContainer from './containers/ConfirmOrderContainer'
 
 import SingleShoeContainer from './containers/SingleShoeContainer.js'
 
@@ -36,6 +37,7 @@ render (
       <Route path="shoe/:shoemodelid" component={SingleShoeContainer} onEnter={onShoeEnter} />
       <Route path="/login" component={LoginForm} />
       <Route path="/cart" component={CartContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
+      <Route path="/confirm" component={ConfirmOrderContainer} onEnter={store.dispatch(fetchPendingOrder(exampleUser))} />
     </Route>
     </Router>
   </Provider>,

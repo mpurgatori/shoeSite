@@ -20,9 +20,7 @@ router.get('/:modelId', function(req,res,next){
 
 
 router.post('/', function(req, res, next) {
-  const criteria = req.body.criteria
-
-
+  const criteria = req.body.criteria;
   const conditions = [];
   if(criteria.color.length) {
     conditions.push({

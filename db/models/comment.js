@@ -16,9 +16,15 @@ const Comment = db.define('comment', {
     },
     upvotes: {
       type: Sequelize.INTEGER,
+      validate: {
+        min: 0
+      } 
     },
     downvotes: {
       type: Sequelize.INTEGER,
+      validate: {
+        min: 0
+      } 
     },
 
 }, {});
