@@ -5,9 +5,7 @@ const util = require('util')
 
 
 router.post('/', function(req, res, next) {
-  const criteria = req.body.criteria
-  console.log('hitting', criteria);
-  console.log('this is checking if SIZE is an Array', Array.isArray(criteria.size));
+  const criteria = req.body.criteria;
 
   const conditions = [];
   if(criteria.color.length) {

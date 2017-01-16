@@ -6,7 +6,11 @@ const db = require('../index')
 const ShoeInventory = db.define('shoe_inventory', {
     size: {
       type: Sequelize.FLOAT,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 4,
+        max: 20
+      }
       },
     color: {
       type: Sequelize.STRING,
@@ -14,11 +18,17 @@ const ShoeInventory = db.define('shoe_inventory', {
     },
     quantity: {
       type: Sequelize.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 0
+      }
     },
     price: {
-      type: Sequelize.FLOAT,
-      allowNull: false
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0
+      }
     }
 
 }, {});
