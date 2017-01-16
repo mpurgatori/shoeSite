@@ -19,7 +19,7 @@ const deleteUser  = user => ({ type: REMOVE_USER, user });
 const getUserData = user => ({ type: GET_USER_DATA, user });
 const getAllUsers = users => ({ type: GET_ALL_USERS, users });
 const createUser  = user => ({ type: ADD_USER, user });
-const selectUser  = user => ({ type: SELECT_USER, user }); // may need to limit fields 
+const selectUser  = user => ({ type: SELECT_USER, user }); // may need to limit fields
 //const setPassord = user => ({ type: SET_PASSWORD, blah });
 
 /* ------------------    REDUCER    --------------------- */
@@ -28,7 +28,7 @@ var defaultState = {
 	all:[], // for admin
 	filtered:[], // for admin
 	selected:{}, // for admin
-	current:{}, 
+	current:{},
 }
 
 export default function (prev = defaultState, action){
@@ -66,23 +66,22 @@ export const updateName = (userId, firstName, lastName) => dispatch =>
        	 lastName: res.data.lastName })))
    .catch(err => console.error(`Updating name unsuccessful`, err))
 
-export const removeUser = id => dispatch =>
-	axios.delete(`/api/users/${id}`)
-		.then( () => dispatch(deleteUser(id)))
+export const removeUser = id => {
+	dispatch(deleteUser(id));
+	return dispatch => {
+		axios.delete(`/api/users/${id}`)
+		.then(res => {
+	})
     .catch(err => console.error(`Removing user: ${id} unsuccesful`, err));
-
+	}
+}
 
 export const fetchAllUsers = () => dispatch =>
     axios.get('/api/users')
    .then(res => dispatch(getAllUsers(res.data)))
    .catch(err => console.error(`Retrieving user list unsuccesful`, err));
 
-// export const selectUser = (id, user) => dispatch => 
-//   	axios.get(`/api/users/${id}`, user)
-//    .then(res => dispatch(getUserData(res.data)))
-//    .catch(err => console.error(`Retrieving data for user ${id} unsuccesful`, err));
-
-export const setCurrentUser = (id, user) => dispatch => 
+export const fetchUserData = (id, user) => dispatch =>
   	axios.get(`/api/users/${id}`, user)
    .then(res => dispatch(getUserData(res.data)))
    .catch(err => console.error(`Retrieving data for user ${id} unsuccesful`, err));
