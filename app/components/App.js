@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import NavbarContainer from '../containers/NavbarContainer'
 import SidebarContainer from '../containers/SidebarContainer'
+import AllShoesContainer from '../containers/AllShoesContainer'
 
 const App = (props) => {
+  console.log('HOME page props', props);
   return (
     <div>
       <NavbarContainer />
@@ -14,7 +16,7 @@ const App = (props) => {
             {
               props.children && React.cloneElement(props.children, props)
             }
-
+            {props.location.pathname === '/' && <AllShoesContainer />}
           </div>
         </div>
     </div>
