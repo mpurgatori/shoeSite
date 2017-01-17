@@ -1,3 +1,4 @@
+
 'use strict'
 
 const db = require('APP/db')
@@ -5,15 +6,22 @@ const Order= db.model('order')
 const ShoeInventory= db.model('shoe_inventory')
 const ShoeModel= db.model('shoe_model')
 
-const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
+const {mustBeLoggedIn, selfOnly, forbidden} = require('./auth.filters')
 
 module.exports = require('express').Router()
 	
-	// this route will only work for get requests with an associated user ID
-	// we do not currently have a 'get all orders' route
 	.get('/', mustBeLoggedIn, selfOnly("see your own orders."), (req, res, next) => 
-		Order.findAll({where: {user_id: req.query.userId}, order: 'date DESC'})
+		Order.findAll({where: req.query, order: 'date DESC'})
 		.then(orders => res.json(orders))
+		.catch(next))
+
+	.get('/:id', mustBeLoggedIn, selfOnly("see your own orders."), (req, res, next) => 
+		Order.findOne({where: {id: req.params.id}})
+		.then(order => order.getShoeInventories({include:
+			[{model: ShoeModel, include:
+				[{model: Comment, where: {user_id: order.user_id}}]}]
+		}))
+		.then(shoes => res.json(shoes))
 		.catch(next))
 
 	.get('/pending/:userId', (req, res, next) => 
