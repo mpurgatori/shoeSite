@@ -3,7 +3,6 @@ import {Link} from 'react-router';
 
 export default function (props) {
   let shoe = props.shoe;
-  console.log("SHOE: ", shoe);
   return (
     <div>
       <div className="row thumbnail">

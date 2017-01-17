@@ -22,7 +22,6 @@ import {getShoeModel} from './redux/singleShoe'
 import {filterAllShoes} from './redux/allShoes'
 
 
-
 const onShoeEnter = function (nextRouterState) {
   const shoemodelId = nextRouterState.params.shoemodelid;
   store.dispatch(getShoeModel(shoemodelId));
