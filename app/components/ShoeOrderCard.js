@@ -3,14 +3,13 @@ import {Link} from 'react-router';
 
 export default function (props) {
   let shoe = props.shoe;
-  console.log("SHOOOOOEEEEE", shoe);
-
+  console.log("SHOE: ", shoe);
   return (
     <div>
       <div className="row thumbnail">
         <div>
           <div className="col-xs-4">
-              <img src={shoe.shoe_model.image_url} style={{ height: 200, width: 200 }} />
+            <img src={shoe.shoe_model.image_url} style={{ height: 200, width: 200 }} />
           </div>
           <div className="col-xs-8">
             <Link  to={`shoe/${shoe.id}`}>

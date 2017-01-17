@@ -30,16 +30,15 @@ module.exports = require('express').Router()
 		.catch(next))
 
 	.delete('/pending/:orderId/:shoeInventoryId', (req, res, next) => 
-		Order.findOne({where: {id: req.params.orderId, status: 'pending' }})
+		Order.findOne({where: {id: req.params.orderId, status: 'pending' }, include:[{model:ShoeInventory, include:[{model:ShoeModel}]}]})
 		.then(order => {
-			console.log("ORDER: ", order)
 			return Promise.all([order, ShoeInventory.findOne({where: {id: req.params.shoeInventoryId}})])
 			.then(results => {
 				let order = results[0];
 				let shoe = results[1];
 				return shoe.removeOrder(order)
 				.then(nothing => {
-					res.json(order)});
+					res.json({order, shoe})});
 		})
 		})
 		.catch(next))
