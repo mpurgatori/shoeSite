@@ -16,7 +16,7 @@ export default (props) => {
 				arrToMap.map( shoe => <ShoeOrderCard key={shoe.id} shoe={shoe} order={order} />)
 				) : null
 			}
-			<a href="#" onClick={() => placeOrder(order)} className="btn btn-lg btn-success"> CONFIRM AND PLACE ORDER </a>
+			<a href="/" onClick={() => placeOrder(order)} className="btn btn-lg btn-success"> CONFIRM AND PLACE ORDER </a>
 		</div>
 		)
 	
