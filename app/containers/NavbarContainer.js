@@ -24,3 +24,4 @@ const NavbarContainer = connect(
 )(Navbar);
 
 export default NavbarContainer;
+

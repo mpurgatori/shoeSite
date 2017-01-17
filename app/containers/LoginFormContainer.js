@@ -19,6 +19,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         firstname: props.firstname,
         lastname: props.lastname,
       }))
+      props.onLoginSuccess();
+
     },
     loginUser: (props) => {
       dispatch(login(props.email, props.password))

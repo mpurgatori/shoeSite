@@ -24,7 +24,7 @@ const Comment = db.define('comment', {
       type: Sequelize.INTEGER,
       validate: {
         min: 0
-      } 
+      }
     },
 
 }, {});
