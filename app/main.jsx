@@ -6,7 +6,7 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './redux/store'
-import AppContainer from './containers/AppContainer'
+import App from './components/App'
 import LoginFormContainer from './containers/LoginFormContainer'
 
 import AllShoesContainer from './containers/AllShoesContainer'
@@ -32,9 +32,7 @@ const exampleUser = {id:2};
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-
-    <Route path="/" component={AppContainer}>
-      <Route path='/allshoes' component={AllShoesContainer} />
+    <Route path="/" component={App}>
       <Route
         path='/profile/:id'
         component={ProfileContainer}

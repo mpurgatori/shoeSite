@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default function (props) {
+  const colorArr = ['Red', 'Blue', 'Green', 'Black', 'White', 'Brown', 'Grey'];
+  const sizeArr = [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 13];
   return (
     <sidebar>
       <section>
@@ -9,22 +11,12 @@ export default function (props) {
           <label>Color</label>
         </h4>
         { props.colorToggle ? (
-          <div>
-            <p style={{marginLeft: 25}}><input type="checkbox" id="cbox1" value="color"
-              onChange={() => {props.addToFilter('color', 'Red')}} /> Red</p>
-            <p style={{marginLeft: 25}}><input type="checkbox" id="cbox2" value="color"
-              onChange={() => {props.addToFilter('color', 'Blue')}} /> Blue</p>
-            <p style={{marginLeft: 25}}><input type="checkbox" id="cbox3" value="color"
-              onChange={() => {props.addToFilter('color', 'Green')}} /> Green</p>
-            <p style={{marginLeft: 25}}><input type="checkbox" id="cbox4" value="color"
-              onChange={() => {props.addToFilter('color', 'Black')}} /> Black</p>
-            <p style={{marginLeft: 25}}><input type="checkbox" id="cbox5" value="color"
-              onChange={() => {props.addToFilter('color', 'White')}} /> White</p>
-            <p style={{marginLeft: 25}}><input type="checkbox" id="cbox6" value="color"
-              onChange={() => {props.addToFilter('color', 'Brown')}} /> Brown</p>
-            <p style={{marginLeft: 25}}><input type="checkbox" id="cbox7" value="color"
-              onChange={() => {props.addToFilter('color', 'Grey')}} /> Grey</p>
-          </div>
+          colorArr.map((color, i) => {
+            return <div key={i}>
+              <p style={{marginLeft: 25}}><input type="checkbox" id="cbox1" value="color"
+                onChange={() => {props.addToFilter('color', color)}} /> {color}</p>
+              </div>
+          })
           ) : null }
       </section>
       <section>
@@ -32,32 +24,12 @@ export default function (props) {
           <label>Size</label>
         </h4>
         { props.sizeToggle ? (
-          <div>
-        <p style={{marginLeft: 25}}> <input type="checkbox" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 7)}}/> 7</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox8" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 7.5)}}/> 7.5</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox9" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 8)}}/> 8</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox10" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 8.5)}}/> 8.5</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbo11" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 9)}}/> 9</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox12" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 9.5)}}/> 9.5</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox13" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 10)}}/> 10</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox14" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 10.5)}}/> 10.5</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox15" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 11)}}/> 11</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox16" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 11.5)}}/> 11.5</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox17" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 12)}}/> 12</p>
-        <p style={{marginLeft: 25}}> <input type="checkbox" id="cbox18" value="second_checkbox"
-          onChange={() => {props.addToFilter('size', 13)}}/> 13</p>
-        </div>
+          sizeArr.map((size, i) => {
+            return <div key={i}>
+              <p style={{marginLeft: 25}}> <input type="checkbox" value="second_checkbox"
+                onChange={() => {props.addToFilter('size', size)}}/> {size}</p>
+              </div>
+          })
         ) : null }
       </section>
       <section>
