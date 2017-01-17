@@ -2,39 +2,37 @@ import axios from 'axios';
 
 const RECEIVE_SHOES = 'RECEIVE_SHOES';
 
-export const receiveShoes = (filteredShoes) => {
+export const receiveShoes = (setShoes) => {
   return {
     type: RECEIVE_SHOES,
-    filteredShoes,
+    setShoes,
   }
 }
 
 export const filterAllShoes = (criteria) => {
   return dispatch => {
-    axios.post('api/shoes', {criteria} )
+    axios({
+      method: 'get',
+      url: 'api/shoes',
+      params: {criteria}
+    })
     .then(res => {
       dispatch(receiveShoes(res.data))
     })
   }
 }
 
-const initialShoesState = {
-  shoes: [],
-}
-
-const shoeReducer = (state=initialShoesState, action) => {
-  const nextState = Object.assign({}, state);
+const shoeReducer = (state=[], action) => {
 
   switch (action.type) {
     case RECEIVE_SHOES:
-      nextState.shoes = action.filteredShoes;
-      return nextState;
-      break;
+      state = action.setShoes;
+      return state;
     default:
       return state;
 
   }
-  return nextState;
+  return state;
 }
 
 export default shoeReducer;

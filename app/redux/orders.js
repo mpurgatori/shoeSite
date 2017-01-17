@@ -14,8 +14,8 @@ const PLACE_ORDER = 'PLACE_ORDER';
 const get_user_orders = orders => ({ type: GET_USER_ORDERS, orders });
 const select_order = shoes => ({ type: SELECT_ORDER, shoes });
 const getPendingOrder = order => ({ type: GET_USER_CURRENT_ORDER, order });
-const removeShoeFromOrder = order => ({ type: REMOVE_SHOE_FROM_ORDER, order });
 const place_order = order => ({type: PLACE_ORDER, order});
+const removeShoeFromOrder = payload => ({ type: REMOVE_SHOE_FROM_ORDER, payload });
 
 /* ------------------    REDUCER    --------------------- */
 
@@ -32,9 +32,12 @@ export default function (order = defaultState, action){
       case GET_USER_ORDERS: return nextStore({orders: action.orders})
       case SELECT_ORDER: return nextStore({selected: action.shoes})
       case GET_USER_CURRENT_ORDER:
-         return Object.assign({}, order, {pending: action.order})
+          return Object.assign({}, order, {pending: action.order})
   		case REMOVE_SHOE_FROM_ORDER:
-  			 return Object.assign({}, order, {pending: action.order})
+          let editedOrder = action.payload.order;
+          let index = editedOrder.shoe_inventories.indexOf(editedOrder.shoe_inventories.find(shoe => action.payload.shoe.id === shoe.id));
+          editedOrder.shoe_inventories.splice(index, 1);
+          return Object.assign({}, order, {pending: editedOrder})
       case PLACE_ORDER:
           return Object.assign({}, order, {pending: {}})
       default: return order
@@ -62,7 +65,10 @@ export const fetchPendingOrder = user => dispatch => {
 };
 export const removeShoe = (orderId, shoeInventoryId) => dispatch => {
   axios.delete(`/api/orders/pending/${orderId}/${shoeInventoryId}`)
-  .then(res => dispatch(removeShoeFromOrder(res.data)))
+  .then(res => {
+    console.log("RESDATA: ", res.data);
+    return dispatch(removeShoeFromOrder(res.data))
+  })
   .catch(err => console.error('Cannot remove', err));
 };
 

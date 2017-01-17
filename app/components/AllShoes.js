@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router';
 import AllShoesContainer from '../containers/AllShoesContainer';
 import ShoeCard from './ShoeCard'
 
@@ -10,9 +9,9 @@ export default function (props) {
       <div>
 
         {
-          allShoes && allShoes.map(shoeType => {
+          allShoes && allShoes.map(shoe => {
             return (
-              <ShoeCard key={shoeType.id} props={shoeType} />
+              <ShoeCard key={shoe.id} shoe={shoe} />
             )
           })
         }

@@ -17,9 +17,8 @@ router.get('/:modelId', function(req,res,next){
   .catch(next)
 })
 
-router.post('/', function(req, res, next) {
-
-  const criteria = req.body.criteria;
+router.get('/', function(req, res, next) {
+  const criteria = JSON.parse(req.query.criteria);
   const conditions = [];
   const priceConditions = [];
   if(criteria.color.length) {

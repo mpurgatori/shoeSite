@@ -16,15 +16,14 @@ const Navbar = (props) => {
         </div>
         <div id="nav-items" className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
-            <li><a href="/">Home</a></li>
+            <li><Link href="/">Home</Link></li>
             { !props.auth ? (
-              <li><a href="/login">Login/SignUp</a></li>
+              <li><Link href="/login">Login/SignUp</Link></li>
             ) : (
               <li><Link onClick={() => {props.loggingOut()}}>Logout</Link></li>
             )
 
             }
-            <li><a href="/allshoes">All Shoes</a></li>
           </ul>
         </div>
       </div>

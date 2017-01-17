@@ -6,7 +6,7 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './redux/store'
-import AppContainer from './containers/AppContainer'
+import App from './components/App'
 import LoginFormContainer from './containers/LoginFormContainer'
 
 import AllShoesContainer from './containers/AllShoesContainer'
@@ -19,7 +19,7 @@ import ProfileContainer from './containers/ProfileContainer.js'
 
 import {fetchPendingOrder} from './redux/orders'
 import {getShoeModel} from './redux/singleShoe'
-
+import {filterAllShoes} from './redux/allShoes'
 
 
 const onShoeEnter = function (nextRouterState) {
@@ -27,14 +27,16 @@ const onShoeEnter = function (nextRouterState) {
   store.dispatch(getShoeModel(shoemodelId));
 };
 
+const onMainEnter = function(nextRouterState) {
+  store.dispatch(filterAllShoes({color:[], size:[], price:200}))
+}
+
 const exampleUser = {id:3};
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-
-    <Route path="/" component={AppContainer}>
-      <Route path='/allshoes' component={AllShoesContainer} />
+    <Route path="/" component={App} onEnter={onMainEnter}>
       <Route
         path='/profile/:id'
         component={ProfileContainer}
