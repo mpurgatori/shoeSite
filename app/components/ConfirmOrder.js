@@ -11,10 +11,11 @@ export default (props) => {
 		return (
 
 			<div>
-			{ arrToMap ? (
-				arrToMap.map( shoe => <ShoeOrderCard key={shoe.id} shoe={shoe} order={order} removeShoe={ removeShoe } />)
-				) : null
-			}
+				{ arrToMap ? (
+					arrToMap.map( shoe => <ShoeOrderCard key={shoe.id} shoe={shoe} order={order} />)
+					) : null
+				}
+				<a href="#" className="btn btn-lg btn-success"> CONFIRM AND PLACE ORDER </a>
 			</div>
 			)
 		
