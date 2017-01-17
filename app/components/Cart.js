@@ -21,6 +21,5 @@ export default (props) => {
 			<a href="/confirm" className="btn btn-lg btn-success"> PLACE ORDER </a>
 		</div>
 		)
-	
-}
 
+}

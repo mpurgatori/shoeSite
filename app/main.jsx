@@ -19,6 +19,7 @@ import ProfileContainer from './containers/ProfileContainer.js'
 
 import {fetchPendingOrder} from './redux/orders'
 import {getShoeModel} from './redux/singleShoe'
+import {filterAllShoes} from './redux/allShoes'
 
 
 
@@ -27,12 +28,16 @@ const onShoeEnter = function (nextRouterState) {
   store.dispatch(getShoeModel(shoemodelId));
 };
 
+const onMainEnter = function(nextRouterState) {
+  store.dispatch(filterAllShoes({color:[], size:[], price:200}))
+}
+
 const exampleUser = {id:3};
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-    <Route path="/" component={App}>
+    <Route path="/" component={App} onEnter={onMainEnter}>
       <Route
         path='/profile/:id'
         component={ProfileContainer}
