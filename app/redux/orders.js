@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import store from './store';
 
 /* --------------    ACTION CONSTANTS    ---------------- */
 
@@ -8,6 +7,7 @@ const GET_USER_ORDERS = 'GET_USER_ORDERS';
 const SELECT_ORDER = 'SELECT_ORDER'
 const GET_USER_CURRENT_ORDER = 'GET_USER_CURRENT_ORDER';
 const REMOVE_SHOE_FROM_ORDER = 'REMOVE_SHOE_FROM_ORDER';
+const PLACE_ORDER = 'PLACE_ORDER';
 
 /* --------------    ACTION CREATORS    ----------------- */
 
@@ -15,6 +15,7 @@ const get_user_orders = orders => ({ type: GET_USER_ORDERS, orders });
 const select_order = shoes => ({ type: SELECT_ORDER, shoes });
 const getPendingOrder = order => ({ type: GET_USER_CURRENT_ORDER, order });
 const removeShoeFromOrder = order => ({ type: REMOVE_SHOE_FROM_ORDER, order });
+const place_order = order => ({type: PLACE_ORDER, order});
 
 /* ------------------    REDUCER    --------------------- */
 
@@ -24,6 +25,8 @@ var defaultState = {
    selected: {},
 }
 export default function (order = defaultState, action){
+  console.log("ORDER: ", order)
+  console.log("ACTION: ", action)
    const nextStore = obj => Object.assign({}, order, obj)
    switch (action.type){
       case GET_USER_ORDERS: return nextStore({orders: action.orders})
@@ -32,6 +35,8 @@ export default function (order = defaultState, action){
          return Object.assign({}, order, {pending: action.order})
   		case REMOVE_SHOE_FROM_ORDER:
   			 return Object.assign({}, order, {pending: action.order})
+      case PLACE_ORDER:
+          return Object.assign({}, order, {pending: {}})
       default: return order
    }
 }
@@ -60,3 +65,9 @@ export const removeShoe = (orderId, shoeInventoryId) => dispatch => {
   .then(res => dispatch(removeShoeFromOrder(res.data)))
   .catch(err => console.error('Cannot remove', err));
 };
+
+export const placeOrder = order => dispatch => {
+   axios.put(`/api/orders/pending/${order.id}`)
+   .then(res => dispatch(place_order(res.data)))
+   .catch(err => console.error(`Cound not place order ${order.id}`, err));
+ };

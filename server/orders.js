@@ -43,3 +43,13 @@ module.exports = require('express').Router()
 		})
 		})
 		.catch(next))
+
+	.put('/pending/:orderId', (req, res, next) => 
+		Order.findOne({where: {id: req.params.orderId, status: 'pending' }})
+		.then(order => {
+			order.update({status: 'shipped'}, {fields: ['status']})
+			.then(order => {
+				res.json(order);
+			})
+		})
+		.catch(next))
