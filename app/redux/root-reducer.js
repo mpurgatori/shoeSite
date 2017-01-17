@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import users from './users';
+import user from './user';
 import orders from './orders';
-// import comments from './comments';
+import review from './review';
 import shoes from './allShoes';
 import auth from './auth';
-import singleShoe from './singleShoe'
+import singleShoe from './singleShoe';
 
 export default combineReducers({
-	users,
+	user,
 	orders,
-	// comments,
+	review,
 	shoes,
 	auth,
-	singleShoe
+	singleShoe,
 });

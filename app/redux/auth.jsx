@@ -46,4 +46,14 @@ export const whoami = () =>
       })
       .catch(failed => dispatch(authenticated(null)))
 
+export const updateAddress = (id, address) => dispatch => 
+   axios.put(`/api/users/${id}`, {address})
+   .then(() => dispatch(whoami()))
+   .catch(err => console.error(`Updating address unsuccessful`, err))
+
+export const updateName = (id, firstname, lastname) => dispatch => 
+   axios.put(`/api/users/${id}`, {firstname, lastname})
+   .then(() => dispatch(whoami()))
+   .catch(err => console.error(`Updating name unsuccessful`, err))
+
 export default reducer
