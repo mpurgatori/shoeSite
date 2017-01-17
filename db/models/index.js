@@ -30,4 +30,4 @@ Order.belongsTo(User);
 User.hasMany(Comment);
 Comment.belongsTo(User);
 
-module.exports = { User, Comment, Order, ShoeInventory, ShoeModel }
+module.exports = { User, Comment, Order, ShoeInventory, ShoeModel, shoe_orders }

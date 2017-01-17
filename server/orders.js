@@ -4,6 +4,8 @@ const db = require('APP/db')
 const Order= db.model('order')
 const ShoeInventory= db.model('shoe_inventory')
 const ShoeModel= db.model('shoe_model')
+const ShoeOrders= db.model('shoe_orders')
+
 
 const {mustBeLoggedIn, selfOnly,forbidden} = require('./auth.filters')
 
@@ -18,7 +20,7 @@ module.exports = require('express').Router()
 
 	.get('/pending/:userId', (req, res, next) =>
 		Order.findOne({where: {user_id: req.params.userId, status: 'pending' }, include:[{model:ShoeInventory, include:[{model:ShoeModel}]}]})
-		.then(order => res.json(order))
+		.then(order => res.json(order))   //SET SHOE INVENTORY TO ORDER
 		.catch(next)
 	)
 
@@ -30,7 +32,36 @@ module.exports = require('express').Router()
 				address: req.user.address
 			}
 		})
-		.then(order => res.send(order))
+		.then(order => ShoeOrders.findOrCreate({
+				where: {
+				order_id: order[0].dataValues.id,
+				shoe_inventory_id: req.body.id
+			}
+		}))
+		.then(inventoryItem => {
+			const shoeId = inventoryItem[0].dataValues.shoe_inventory_id;
+			const ordId = inventoryItem[0].dataValues.order_id;
+			const quant = inventoryItem[0].dataValues.quantity;
+			if (quant===null){
+				ShoeOrders.update(
+			 {quantity:1},
+			 {
+				where:{
+					order_id:ordId,
+					shoe_inventory_id:shoeId
+				}})
+			}
+			else {
+				const newQuant = quant+1;
+				ShoeOrders.update(
+			 {quantity:newQuant},
+			 {
+				where:{
+					order_id:ordId,
+					shoe_inventory_id:shoeId
+				}})
+			}
+		})
 	.catch(next)
 )
 

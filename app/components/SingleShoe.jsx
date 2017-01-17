@@ -26,7 +26,7 @@ export default class SCC extends Component {
     const ID = this.state.inventoryId;
     console.log('HERES ID', ID);
     if(ID === 'SELECT SIZE / COLOR'){return alert('Please Select Color and Size')}
-    axios.post('/api/orders/cartsubmit', ID)
+    axios.post('/api/orders/cartsubmit', {id:ID})
     .then(order=>console.log('!)!)!)!)!)!)!)!)!)!', order))
   }
 
@@ -69,6 +69,7 @@ export default class SCC extends Component {
                       {this.state.shoe.price}
                     </p>
                   </div>
+                  <h3>{this.state.shoe.description}</h3>
             <div>
               <a onClick={() => {this.orderSubmit()}} className="btn btn-primary btn-warning"><span className="glyphicon glyphicon-shopping-cart"></span> ADD TO CART</a>
               <h4>Product Reviews</h4>
