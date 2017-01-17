@@ -27,7 +27,7 @@ const onShoeEnter = function (nextRouterState) {
   store.dispatch(getShoeModel(shoemodelId));
 };
 
-const exampleUser = {id:2};
+const exampleUser = {id:3};
 
 render (
   <Provider store={store}>
