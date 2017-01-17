@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    allShoes: state.shoes.shoes,
+    allShoes: state.shoes,
   };
 }
 

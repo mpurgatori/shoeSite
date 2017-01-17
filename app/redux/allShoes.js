@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const RECEIVE_SHOES = 'RECEIVE_SHOES';
 
-export const receiveShoes = (filteredShoes) => {
+export const receiveShoes = (setShoes) => {
   return {
     type: RECEIVE_SHOES,
-    filteredShoes,
+    setShoes,
   }
 }
 
@@ -18,23 +18,17 @@ export const filterAllShoes = (criteria) => {
   }
 }
 
-const initialShoesState = {
-  shoes: [],
-}
-
-const shoeReducer = (state=initialShoesState, action) => {
-  const nextState = Object.assign({}, state);
+const shoeReducer = (state=[], action) => {
 
   switch (action.type) {
     case RECEIVE_SHOES:
-      nextState.shoes = action.filteredShoes;
-      return nextState;
-      break;
+      state = action.setShoes;
+      return state;
     default:
       return state;
 
   }
-  return nextState;
+  return state;
 }
 
 export default shoeReducer;
