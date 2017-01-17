@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import NavbarContainer from '../containers/NavbarContainer'
 import SidebarContainer from '../containers/SidebarContainer'
 import AllShoesContainer from '../containers/AllShoesContainer'
